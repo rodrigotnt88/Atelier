@@ -1,18 +1,43 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-PT">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ashley Medina — Vestidos de Noiva Sob Medida</title>
+<title>Ashley Medina — Vestidos de Noiva Sob Medida | Ateliê em Seixal</title>
+
+<!-- ============================================================
+     SEO & PARTILHA SOCIAL
+     ============================================================ -->
+<meta name="description" content="Ateliê Ashley Medina em Seixal. Vestidos de noiva de alta-costura, feitos à medida — do primeiro esboço à última prova. Marque a sua consulta privada.">
+<meta name="author" content="Ashley Medina">
+<meta name="theme-color" content="#1B1815">
+<link rel="canonical" href="https://ashleymedina.pt/">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Ashley Medina">
+<meta property="og:title" content="Ashley Medina — Vestidos de Noiva Sob Medida">
+<meta property="og:description" content="Alta-costura nupcial feita à medida no ateliê de Seixal.">
+<meta property="og:locale" content="pt_PT">
+
+<!-- ============================================================
+     CIBERSEGURANÇA (protecções ao nível do documento)
+     Nota: cabeçalhos completos (HSTS, X-Frame-Options, etc.) estão
+     definidos em _headers (Netlify/Vercel) e .htaccess (Apache).
+     ============================================================ -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; img-src 'self' https://images.unsplash.com data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self' 'unsafe-inline'; connect-src 'self' https://wa.me https://api.whatsapp.com; upgrade-insecure-requests">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta name="robots" content="index, follow">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 
 /* ============================================================
    ASHLEY MEDINA — estúdio de noivas editorial
    Referência: layout guiado por fotografia, paleta creme/blush,
-   serifa clássica alta, botões em pílula, listas numeradas
-   sublinhadas, colagens de fotos sobrepostas.
+   serifa clássica alta, botões em pílula, listas numeradas.
    ============================================================ */
 
 .am-root, .am-root * { box-sizing: border-box; }
@@ -48,23 +73,54 @@
   padding: 15px 32px; border-radius: 100px;
   border: 1px solid var(--ink); background: transparent; color: var(--ink);
   text-decoration: none; cursor: pointer;
-  transition: background .3s ease, color .3s ease;
+  transition: background .35s ease, color .35s ease, transform .35s ease;
   white-space: nowrap;
 }
-.am-btn:hover { background: var(--ink); color: var(--cream); }
+.am-btn:hover { background: var(--ink); color: var(--cream); transform: translateY(-2px); }
 .am-btn--solid { background: var(--ink); color: var(--cream); }
 .am-btn--solid:hover { background: transparent; color: var(--ink); }
+
+/* ============================================================
+   REVELAÇÃO NO SCROLL
+   ============================================================ */
+.am-reveal { opacity: 0; transform: translateY(28px); transition: opacity .9s ease, transform .9s cubic-bezier(.2,.7,.2,1); }
+.am-reveal.is-in { opacity: 1; transform: none; }
+.am-reveal[data-delay="1"] { transition-delay: .12s; }
+.am-reveal[data-delay="2"] { transition-delay: .24s; }
+.am-reveal[data-delay="3"] { transition-delay: .36s; }
+
+/* moldura de foto reutilizável */
+.am-frame { position: relative; overflow: hidden; background: var(--blush-deep); }
+.am-frame img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.1s cubic-bezier(.2,.7,.2,1); }
+.am-frame:hover img { transform: scale(1.05); }
 
 /* ============================================================
    TOPBAR
    ============================================================ */
 .am-topbar {
+  position: sticky; top: 0; z-index: 80;
   display: flex; align-items: center; justify-content: space-between;
-  padding: 30px 6vw 0;
+  padding: 22px 6vw;
+  background: rgba(247,241,232,0);
+  transition: background .4s ease, padding .4s ease, box-shadow .4s ease, backdrop-filter .4s ease;
+}
+.am-topbar.is-stuck {
+  background: rgba(247,241,232,0.82);
+  -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+  box-shadow: 0 1px 0 var(--line);
+  padding: 16px 6vw;
 }
 .am-topbar__mark { font-family: var(--display); font-size: 17px; letter-spacing: 0.06em; }
 .am-topbar__nav { display: flex; gap: 30px; }
-.am-topbar__nav a { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink); text-decoration: none; }
+.am-topbar__nav a {
+  font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink);
+  text-decoration: none; position: relative; padding-bottom: 3px;
+}
+.am-topbar__nav a::after {
+  content: ""; position: absolute; left: 0; bottom: 0; width: 0; height: 1px;
+  background: var(--ink); transition: width .35s ease;
+}
+.am-topbar__nav a:hover::after { width: 100%; }
 @media (max-width: 760px) { .am-topbar__nav { display: none; } }
 
 /* botão hambúrguer */
@@ -81,7 +137,7 @@
 .am-menu-toggle.is-active span:nth-child(2) { opacity: 0; }
 .am-menu-toggle.is-active span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
 
-/* overlay de menu — desce cobrindo a tela, como um "roller" */
+/* overlay de menu */
 .am-menu-overlay {
   position: fixed; inset: 0; z-index: 90;
   background: var(--cream);
@@ -121,13 +177,9 @@
 }
 .am-hero__title em { font-style: italic; font-weight: 400; }
 .am-hero__text { font-size: 14.5px; line-height: 1.85; color: var(--charcoal); font-weight: 300; max-width: 46ch; margin: 0 0 34px; }
+.am-hero__actions { display: flex; gap: 14px; flex-wrap: wrap; }
 
-.am-hero__photo {
-  aspect-ratio: 3/3.9;
-  background: linear-gradient(155deg, #d8c3ab 0%, #c9ae90 100%);
-  display: flex; align-items: center; justify-content: center; position: relative;
-}
-.am-hero__photo svg { width: 40%; opacity: 0.55; }
+.am-hero__photo { aspect-ratio: 3/3.9; }
 
 @media (max-width: 900px) {
   .am-hero { grid-template-columns: 1fr; padding: 30px 6vw 60px; gap: 40px; }
@@ -135,7 +187,7 @@
 }
 
 /* ============================================================
-   2. NOSSA ABORDAGEM — texto + colagem de fotos
+   2. NOSSA ABORDAGEM
    ============================================================ */
 .am-approach {
   background: var(--blush);
@@ -148,17 +200,11 @@
 .am-approach__cta { margin-top: 26px; }
 
 .am-approach__collage { position: relative; display: flex; justify-content: center; padding: 30px 0; }
-.am-approach__img {
-  background: linear-gradient(155deg, #b7906b 0%, #8f6a49 100%);
-  display: flex; align-items: center; justify-content: center;
-}
-.am-approach__img svg { opacity: 0.5; width: 34%; }
 .am-approach__img--main { width: 62%; aspect-ratio: 3/4.6; }
 .am-approach__img--float {
   position: absolute; right: 4%; bottom: -6%;
   width: 38%; aspect-ratio: 3/4;
   border: 6px solid var(--cream);
-  background: linear-gradient(155deg, #d8c3ab 0%, #c9ae90 100%);
 }
 
 @media (max-width: 900px) {
@@ -167,7 +213,7 @@
 }
 
 /* ============================================================
-   3. SERVIÇOS SOB MEDIDA — título centralizado + foto/lista
+   3. SERVIÇOS SOB MEDIDA
    ============================================================ */
 .am-services { padding: 110px 6vw; background: var(--white); }
 .am-services__head { text-align: center; margin-bottom: 60px; }
@@ -175,20 +221,16 @@
 .am-services__body {
   display: grid; grid-template-columns: 0.9fr 1fr; gap: 70px; align-items: center;
 }
-.am-services__photo {
-  aspect-ratio: 3/3.9;
-  background: linear-gradient(155deg, #cbb193 0%, #a5825f 100%);
-  display: flex; align-items: center; justify-content: center;
-}
-.am-services__photo svg { width: 38%; opacity: 0.55; }
-.am-services__list { list-style: none; margin: 0 0 34px; padding: 0; }
+.am-services__photo { aspect-ratio: 3/3.9; }
+.am-services__list { list-style: none; margin: 0 0 34px; padding: 0; counter-reset: am-service; }
 .am-services__list li {
   counter-increment: am-service;
   padding: 20px 0; border-bottom: 1px solid var(--line);
   font-size: 15.5px; font-weight: 400;
+  transition: padding-left .35s ease, color .35s ease;
 }
-.am-services__list { counter-reset: am-service; }
-.am-services__list li::before { content: counter(am-service, decimal-leading-zero) ". "; color: var(--ink); }
+.am-services__list li::before { content: counter(am-service, decimal-leading-zero) ". "; color: var(--charcoal); }
+.am-services__list li:hover { padding-left: 12px; color: var(--charcoal); }
 
 @media (max-width: 900px) {
   .am-services__body { grid-template-columns: 1fr; gap: 40px; }
@@ -196,26 +238,21 @@
 }
 
 /* ============================================================
-   4. FUNDADORA — "Oi, sou Ashley"
+   4. FUNDADORA
    ============================================================ */
 .am-founder {
   background: var(--blush-deep);
   padding: 90px 6vw;
   display: grid; grid-template-columns: 0.5fr 1fr; gap: 50px; align-items: center;
 }
-.am-founder__photo {
-  aspect-ratio: 1/1.15; border-radius: 6px;
-  background: linear-gradient(155deg, #b7906b 0%, #8f6a49 100%);
-  display: flex; align-items: center; justify-content: center;
-}
-.am-founder__photo svg { width: 42%; opacity: 0.55; }
+.am-founder__photo { aspect-ratio: 1/1.15; border-radius: 6px; }
 .am-founder__eyebrow { margin-bottom: 12px; }
 .am-founder__name { font-family: var(--display); font-style: italic; font-size: clamp(26px, 3.2vw, 34px); margin: 0 0 16px; }
 .am-founder__text { font-size: 13.5px; line-height: 1.8; color: var(--ink); font-weight: 300; max-width: 52ch; margin: 0 0 22px; }
 
 @media (max-width: 760px) {
   .am-founder { grid-template-columns: 1fr; padding: 70px 6vw; gap: 30px; }
-  .am-founder__photo { max-width: 220px; }
+  .am-founder__photo { max-width: 260px; }
 }
 
 /* ============================================================
@@ -235,39 +272,27 @@
 .am-brides__head { text-align: left; margin-bottom: 40px; }
 .am-brides__head h2 { font-family: var(--display); font-size: clamp(26px, 3.2vw, 36px); margin: 0; }
 .am-brides__head h2 em { font-style: italic; }
-.am-brides__row { display: flex; gap: 22px; overflow-x: auto; padding-bottom: 10px; }
-.am-bride { flex: 0 0 auto; width: 240px; }
-.am-bride__photo {
-  aspect-ratio: 3/4; margin-bottom: 14px;
-  background: linear-gradient(155deg, #d8c3ab 0%, #b7906b 100%);
-  display: flex; align-items: center; justify-content: center;
-  overflow: hidden;
-}
-.am-bride__photo img { width: 100%; height: 100%; object-fit: cover; }
-.am-bride__photo svg { width: 34%; opacity: 0.55; }
+.am-brides__row { display: flex; gap: 22px; overflow-x: auto; padding-bottom: 10px; scroll-snap-type: x mandatory; }
+.am-bride { flex: 0 0 auto; width: 240px; scroll-snap-align: start; }
+.am-bride__photo { aspect-ratio: 3/4; margin-bottom: 14px; }
 .am-bride__name { font-family: var(--display); font-style: italic; font-size: 15px; text-align: center; }
 
 @media (max-width: 640px) { .am-bride { width: 66vw; } }
 
 /* ============================================================
-   7. O QUE ESPERAR — texto curto + foto pequena
+   7. O QUE ESPERAR
    ============================================================ */
 .am-expect {
   padding: 90px 6vw 100px;
   display: grid; grid-template-columns: 0.5fr 1fr; gap: 40px; align-items: center;
 }
-.am-expect__photo {
-  aspect-ratio: 4/4.6;
-  background: linear-gradient(155deg, #d8c3ab 0%, #b7906b 100%);
-  display: flex; align-items: center; justify-content: center;
-}
-.am-expect__photo svg { width: 40%; opacity: 0.55; }
+.am-expect__photo { aspect-ratio: 4/4.6; }
 .am-expect__title { font-family: var(--display); font-size: clamp(24px, 2.8vw, 30px); margin: 0 0 16px; }
 .am-expect__text { font-size: 13.5px; line-height: 1.85; color: var(--charcoal); font-weight: 300; max-width: 46ch; margin: 0; }
 
 @media (max-width: 760px) {
   .am-expect { grid-template-columns: 1fr; padding: 70px 6vw 80px; gap: 26px; }
-  .am-expect__photo { max-width: 220px; }
+  .am-expect__photo { max-width: 260px; }
 }
 
 /* ============================================================
@@ -279,12 +304,7 @@
 }
 .am-book__title { font-family: var(--display); font-size: clamp(28px, 3.6vw, 40px); margin: 0 0 20px; }
 .am-book__text { font-size: 13.5px; line-height: 1.85; color: var(--charcoal); font-weight: 300; max-width: 42ch; margin: 0 0 30px; }
-.am-book__photo {
-  aspect-ratio: 4/3.2;
-  background: linear-gradient(155deg, #cbb193 0%, #a5825f 100%);
-  display: flex; align-items: center; justify-content: center;
-}
-.am-book__photo svg { width: 30%; opacity: 0.5; }
+.am-book__photo { aspect-ratio: 4/3.2; }
 
 @media (max-width: 900px) {
   .am-book { grid-template-columns: 1fr; padding: 80px 6vw; gap: 34px; }
@@ -294,7 +314,7 @@
 /* ============================================================
    9. WORDMARK GIGANTE
    ============================================================ */
-.am-wordmark { text-align: center; padding: 40px 6vw 110px; }
+.am-wordmark { text-align: center; padding: 40px 6vw 110px; overflow: hidden; }
 .am-wordmark h2 { font-family: var(--display); font-size: clamp(46px, 10vw, 130px); letter-spacing: 0.01em; margin: 0; }
 
 /* ============================================================
@@ -309,7 +329,7 @@
 .am-footer p { font-size: 13px; line-height: 1.8; color: var(--charcoal); font-weight: 300; max-width: 32ch; margin: 0; }
 .am-footer h4 { font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; margin: 0 0 16px; font-weight: 500; color: var(--charcoal); }
 .am-footer__list { list-style: none; padding: 0; margin: 0; }
-.am-footer__list li { margin-bottom: 10px; }
+.am-footer__list li { margin-bottom: 10px; font-size: 13px; color: var(--charcoal); font-weight: 300; }
 .am-footer__list a { color: var(--ink); text-decoration: none; font-size: 13px; font-weight: 300; }
 .am-footer__list a:hover { text-decoration: underline; }
 .am-footer__bottom { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; font-size: 11px; color: var(--charcoal); }
@@ -324,19 +344,24 @@
   width: 54px; height: 54px; border-radius: 50%;
   background: var(--ink); display: flex; align-items: center; justify-content: center;
   text-decoration: none; box-shadow: 0 6px 20px rgba(27,24,21,0.28);
+  transition: transform .3s ease;
 }
+.am-float-wa:hover { transform: scale(1.08); }
 .am-float-wa svg { width: 24px; height: 24px; fill: var(--cream); }
 @media (max-width: 560px) { .am-float-wa { width: 48px; height: 48px; right: 16px; bottom: 16px; } }
 
 .am-root a:focus-visible, .am-root button:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
-@media (prefers-reduced-motion: reduce) { .am-root * { animation: none !important; transition: none !important; } }
+@media (prefers-reduced-motion: reduce) {
+  .am-root *, .am-reveal { animation: none !important; transition: none !important; }
+  .am-reveal { opacity: 1; transform: none; }
+}
 
 </style>
 </head>
 <body>
 <div class="am-root">
 
-<div class="am-topbar">
+<header class="am-topbar" data-am-topbar>
   <div class="am-topbar__mark">Ashley Medina</div>
   <nav class="am-topbar__nav">
     <a href="#abordagem">Ateliê</a>
@@ -347,7 +372,7 @@
   <button class="am-menu-toggle" data-am-menu-toggle aria-label="Abrir menu" aria-expanded="false">
     <span></span><span></span><span></span>
   </button>
-</div>
+</header>
 
 <div class="am-menu-overlay" data-am-menu-overlay>
   <div class="am-menu-overlay__top">
@@ -361,55 +386,52 @@
   </ul>
   <div class="am-menu-overlay__contact">
     <p>Rua Rodrigues Lapa, 14, 4.º Esq.<br>2845-132 Seixal</p>
-    <a href="https://wa.me/351933459640" target="_blank" rel="noopener">+351 933 459 640</a>
+    <a href="https://wa.me/351933459640" target="_blank" rel="noopener noreferrer">+351 933 459 640</a>
   </div>
 </div>
 
-<!-- ============================================================
-     1. HERO
-     ============================================================ -->
+<!-- 1. HERO -->
 <section class="am-hero" id="topo">
   <div>
-    <p class="am-eyebrow am-hero__eyebrow">Ateliê em Seixal · Alta-Costura Nupcial</p>
-    <h1 class="am-hero__title">Design nupcial <em>atemporal</em></h1>
-    <p class="am-hero__text">No Atelier Ashley Medina criamos vestidos de noiva feitos à medida, pensados para a sua personalidade, o seu corpo e a forma como sempre imaginou viver este momento.<br><br>Por isso, cada vestido nasce da escuta, do cuidado e da sensibilidade, compreendendo o seu estilo e tudo aquilo que deseja transmitir no dia mais especial da sua vida.</p>
-    <a href="#servicos" class="am-btn am-btn--solid">Ver Coleção</a>
+    <p class="am-eyebrow am-hero__eyebrow am-reveal">Ateliê em Seixal · Alta-Costura Nupcial</p>
+    <h1 class="am-hero__title am-reveal" data-delay="1">Design nupcial <em>atemporal</em></h1>
+    <p class="am-hero__text am-reveal" data-delay="2">No Atelier Ashley Medina criamos vestidos de noiva feitos à medida, pensados para a sua personalidade, o seu corpo e a forma como sempre imaginou viver este momento.<br><br>Por isso, cada vestido nasce da escuta, do cuidado e da sensibilidade, compreendendo o seu estilo e tudo aquilo que deseja transmitir no dia mais especial da sua vida.</p>
+    <div class="am-hero__actions am-reveal" data-delay="3">
+      <a href="#servicos" class="am-btn am-btn--solid">Ver Coleção</a>
+      <a href="#contato" class="am-btn">Agendar Consulta</a>
+    </div>
   </div>
-  <div class="am-hero__photo">
-    <svg viewBox="0 0 100 160" fill="none" stroke="#fff" stroke-width="0.6"><path d="M50 6 C42 6 36 14 36 20 C36 26 40 30 40 30 L34 40 C24 58 22 84 26 118 L28 154 L72 154 L74 118 C78 84 76 58 66 40 L60 30 C60 30 64 26 64 20 C64 14 58 6 50 6 Z" opacity="0.8"/></svg>
+  <div class="am-frame am-hero__photo am-reveal" data-delay="1">
+    <img src="https://images.unsplash.com/photo-1600973450758-826872a3aaca?crop=entropy&cs=srgb&fm=jpg&q=80&w=900&ixlib=rb-4.1.0" alt="Noiva com vestido de alta-costura do ateliê Ashley Medina" loading="eager" decoding="async">
   </div>
 </section>
 
-<!-- ============================================================
-     2. NOSSA ABORDAGEM
-     ============================================================ -->
+<!-- 2. NOSSA ABORDAGEM -->
 <section class="am-approach" id="abordagem">
   <div>
-    <h2 class="am-approach__title"><em>Nossa</em> ABORDAGEM</h2>
-    <p class="am-approach__text">Acreditamos que encontrar o vestido de noiva deve ser uma das experiências mais memoráveis da sua vida. No Ateliê Ashley Medina, oferecemos um processo caloroso, acolhedor e luxuoso que celebra a jornada de se tornar noiva.</p>
-    <p class="am-approach__text">Quando você chega ao nosso ateliê, é guiada pela nossa equipe em cada etapa — do primeiro esboço à última prova — para criar um vestido perfeitamente alinhado a quem você é.</p>
-    <div class="am-approach__cta"><a href="#servicos" class="am-btn">Ver Serviços</a></div>
+    <h2 class="am-approach__title am-reveal"><em>Nossa</em> ABORDAGEM</h2>
+    <p class="am-approach__text am-reveal" data-delay="1">Acreditamos que encontrar o vestido de noiva deve ser uma das experiências mais memoráveis da sua vida. No Ateliê Ashley Medina, oferecemos um processo caloroso, acolhedor e luxuoso que celebra a jornada de se tornar noiva.</p>
+    <p class="am-approach__text am-reveal" data-delay="2">Quando você chega ao nosso ateliê, é guiada pela nossa equipe em cada etapa — do primeiro esboço à última prova — para criar um vestido perfeitamente alinhado a quem você é.</p>
+    <div class="am-approach__cta am-reveal" data-delay="3"><a href="#servicos" class="am-btn">Ver Serviços</a></div>
   </div>
-  <div class="am-approach__collage">
-    <div class="am-approach__img am-approach__img--main">
-      <svg viewBox="0 0 100 160" fill="none" stroke="#fff" stroke-width="0.6"><path d="M50 8 C42 8 36 15 36 21 C36 27 40 31 40 31 L34 42 C24 62 22 88 26 122 L28 152 L72 152 L74 122 C78 88 76 62 66 42 L60 31 C60 31 64 27 64 21 C64 15 58 8 50 8 Z" opacity="0.7"/></svg>
+  <div class="am-approach__collage am-reveal" data-delay="1">
+    <div class="am-frame am-approach__img--main">
+      <img src="https://images.unsplash.com/photo-1543251587-2c12b825469a?crop=entropy&cs=srgb&fm=jpg&q=80&w=800&ixlib=rb-4.1.0" alt="Vestido de noiva translúcido no ateliê" loading="lazy" decoding="async">
     </div>
-    <div class="am-approach__img am-approach__img--float">
-      <svg viewBox="0 0 100 100" fill="none" stroke="#fff" stroke-width="0.7"><circle cx="50" cy="34" r="15"/><path d="M22 90c0-18 12-32 28-32s28 14 28 32"/></svg>
+    <div class="am-frame am-approach__img--float">
+      <img src="https://images.unsplash.com/photo-1620366204285-aef6e2c236ae?crop=entropy&cs=srgb&fm=jpg&q=80&w=600&ixlib=rb-4.1.0" alt="Detalhe de renda de vestido de noiva" loading="lazy" decoding="async">
     </div>
   </div>
 </section>
 
-<!-- ============================================================
-     3. SERVIÇOS SOB MEDIDA
-     ============================================================ -->
+<!-- 3. SERVIÇOS SOB MEDIDA -->
 <section class="am-services" id="servicos">
-  <div class="am-services__head"><h2>Serviços de Alta-Costura</h2></div>
+  <div class="am-services__head am-reveal"><h2>Serviços de Alta-Costura</h2></div>
   <div class="am-services__body">
-    <div class="am-services__photo">
-      <svg viewBox="0 0 100 160" fill="none" stroke="#fff" stroke-width="0.6"><path d="M50 6 C42 6 36 14 36 20 C36 26 40 30 40 30 L34 40 C24 58 22 84 26 118 L28 154 L72 154 L74 118 C78 84 76 58 66 40 L60 30 C60 30 64 26 64 20 C64 14 58 6 50 6 Z" opacity="0.75"/></svg>
+    <div class="am-frame am-services__photo am-reveal">
+      <img src="https://images.unsplash.com/photo-1594552072238-b8a33785b261?crop=entropy&cs=srgb&fm=jpg&q=80&w=800&ixlib=rb-4.1.0" alt="Vestido de noiva de alta-costura" loading="lazy" decoding="async">
     </div>
-    <div>
+    <div class="am-reveal" data-delay="1">
       <ul class="am-services__list">
         <li>Vestidos de Noiva Sob Medida</li>
         <li>Coleção Feita Sob Encomenda</li>
@@ -421,98 +443,84 @@
   </div>
 </section>
 
-<!-- ============================================================
-     4. FUNDADORA
-     ============================================================ -->
+<!-- 4. FUNDADORA -->
 <section class="am-founder" id="atelie">
-  <div class="am-founder__photo">
-    <svg viewBox="0 0 100 100" fill="none" stroke="#fff" stroke-width="0.7"><circle cx="50" cy="34" r="15"/><path d="M22 90c0-18 12-32 28-32s28 14 28 32"/></svg>
+  <div class="am-frame am-founder__photo am-reveal">
+    <img src="https://images.unsplash.com/photo-1753162658539-bbd2d82a117b?crop=entropy&cs=srgb&fm=jpg&q=80&w=700&ixlib=rb-4.1.0" alt="Ashley Medina, estilista e fundadora do ateliê" loading="lazy" decoding="async">
   </div>
   <div>
-    <p class="am-eyebrow am-founder__eyebrow">Fundadora e Estilista Principal</p>
-    <h2 class="am-founder__name">Olá, eu sou a Ashley</h2>
-    <p class="am-founder__text">Para mim, criar vestidos de noiva vai muito além de costurar peças bonitas — trata-se de criar heranças que carregam memórias para a vida toda. A cada ponto, cada escolha de tecido e cada ajuste, penso cuidadosamente para criar um vestido que seja tão único quanto a noiva que vai vesti-lo.</p>
-    <a href="#contato" class="am-btn">Saiba Mais</a>
+    <p class="am-eyebrow am-founder__eyebrow am-reveal">Fundadora e Estilista Principal</p>
+    <h2 class="am-founder__name am-reveal" data-delay="1">Olá, eu sou a Ashley</h2>
+    <p class="am-founder__text am-reveal" data-delay="2">Para mim, criar vestidos de noiva vai muito além de costurar peças bonitas — trata-se de criar heranças que carregam memórias para a vida toda. A cada ponto, cada escolha de tecido e cada ajuste, penso cuidadosamente para criar um vestido que seja tão único quanto a noiva que vai vesti-lo.</p>
+    <a href="#contato" class="am-btn am-reveal" data-delay="3">Saiba Mais</a>
   </div>
 </section>
 
-<!-- ============================================================
-     5. FRASE DE INSPIRAÇÃO
-     ============================================================ -->
+<!-- 5. FRASE DE INSPIRAÇÃO -->
 <section class="am-inspire">
-  <p>Nos inspiramos no romantismo clássico, na alta-costura vintage <em>e</em> no design contemporâneo <em>para</em> criar o seu vestido perfeito.</p>
-  <a href="#noivas" class="am-btn">Explorar</a>
+  <p class="am-reveal">Nos inspiramos no romantismo clássico, na alta-costura vintage <em>e</em> no design contemporâneo <em>para</em> criar o seu vestido perfeito.</p>
+  <a href="#noivas" class="am-btn am-reveal" data-delay="1">Explorar</a>
 </section>
 
-<!-- ============================================================
-     6. NOIVAS EM DESTAQUE
-     ============================================================ -->
+<!-- 6. NOIVAS EM DESTAQUE -->
 <section class="am-brides" id="noivas">
-  <div class="am-brides__head"><h2><em>Noivas</em> em Destaque</h2></div>
+  <div class="am-brides__head am-reveal"><h2><em>Noivas</em> em Destaque</h2></div>
   <div class="am-brides__row">
-    <div class="am-bride">
-      <div class="am-bride__photo"><img src="images/noiva01.jpg" alt="Noiva01 vestindo Ateliê Ashley Medina"></div>
-      <p class="am-bride__name">Noiva01</p>
+    <div class="am-bride am-reveal">
+      <div class="am-frame am-bride__photo"><img src="https://images.unsplash.com/photo-1579583764988-3e08c6132d2a?crop=entropy&cs=srgb&fm=jpg&q=80&w=500&ixlib=rb-4.1.0" alt="Noiva vestindo Ateliê Ashley Medina" loading="lazy" decoding="async"></div>
+      <p class="am-bride__name">Beatriz</p>
     </div>
-    <div class="am-bride">
-      <div class="am-bride__photo"><img src="images/noiva01-b.jpg" alt="Noiva01 vestindo Ateliê Ashley Medina"></div>
-      <p class="am-bride__name">Noiva01</p>
+    <div class="am-bride am-reveal" data-delay="1">
+      <div class="am-frame am-bride__photo"><img src="https://images.unsplash.com/photo-1543251587-2c12b825469a?crop=entropy&cs=srgb&fm=jpg&q=80&w=500&ixlib=rb-4.1.0" alt="Noiva vestindo Ateliê Ashley Medina" loading="lazy" decoding="async"></div>
+      <p class="am-bride__name">Carolina</p>
     </div>
-    <div class="am-bride">
-      <div class="am-bride__photo"><img src="images/noiva01-c.jpg" alt="Noiva01 vestindo Ateliê Ashley Medina"></div>
-      <p class="am-bride__name">Noiva01</p>
+    <div class="am-bride am-reveal" data-delay="2">
+      <div class="am-frame am-bride__photo"><img src="https://images.unsplash.com/photo-1484849457281-191e439a0431?crop=entropy&cs=srgb&fm=jpg&q=80&w=500&ixlib=rb-4.1.0" alt="Noiva vestindo Ateliê Ashley Medina" loading="lazy" decoding="async"></div>
+      <p class="am-bride__name">Mariana</p>
     </div>
-    <div class="am-bride">
-      <div class="am-bride__photo"><img src="images/noiva01-d.jpg" alt="Noiva01 vestindo Ateliê Ashley Medina"></div>
-      <p class="am-bride__name">Noiva01</p>
+    <div class="am-bride am-reveal" data-delay="3">
+      <div class="am-frame am-bride__photo"><img src="https://images.unsplash.com/photo-1779055660224-882f4c02bc50?crop=entropy&cs=srgb&fm=jpg&q=80&w=500&ixlib=rb-4.1.0" alt="Noiva vestindo Ateliê Ashley Medina" loading="lazy" decoding="async"></div>
+      <p class="am-bride__name">Inês</p>
     </div>
-    <div class="am-bride">
-      <div class="am-bride__photo"><img src="images/noiva01-e.jpg" alt="Noiva01 vestindo Ateliê Ashley Medina"></div>
-      <p class="am-bride__name">Noiva01</p>
+    <div class="am-bride am-reveal">
+      <div class="am-frame am-bride__photo"><img src="https://images.unsplash.com/photo-1624091844772-554661d10173?crop=entropy&cs=srgb&fm=jpg&q=80&w=500&ixlib=rb-4.1.0" alt="Noiva vestindo Ateliê Ashley Medina" loading="lazy" decoding="async"></div>
+      <p class="am-bride__name">Sofia</p>
     </div>
-    <div class="am-bride">
-      <div class="am-bride__photo"><img src="images/noiva01-f.jpg" alt="Noiva01 vestindo Ateliê Ashley Medina na igreja"></div>
-      <p class="am-bride__name">Noiva01</p>
+    <div class="am-bride am-reveal" data-delay="1">
+      <div class="am-frame am-bride__photo"><img src="https://images.unsplash.com/photo-1600973450758-826872a3aaca?crop=entropy&cs=srgb&fm=jpg&q=80&w=500&ixlib=rb-4.1.0" alt="Noiva vestindo Ateliê Ashley Medina" loading="lazy" decoding="async"></div>
+      <p class="am-bride__name">Matilde</p>
     </div>
   </div>
 </section>
 
-<!-- ============================================================
-     7. O QUE ESPERAR
-     ============================================================ -->
+<!-- 7. O QUE ESPERAR -->
 <section class="am-expect">
-  <div class="am-expect__photo">
-    <svg viewBox="0 0 100 160" fill="none" stroke="#fff" stroke-width="0.6"><path d="M50 8c-8 0-14 7-14 14 0 6 4 10 4 10l-6 11c-10 20-11 44-4 78h40c7-34 6-58-4-78l-6-11s4-4 4-10c0-7-6-14-14-14z" opacity="0.75"/></svg>
+  <div class="am-frame am-expect__photo am-reveal">
+    <img src="https://images.unsplash.com/photo-1767050400384-3e2c733e5dba?crop=entropy&cs=srgb&fm=jpg&q=80&w=700&ixlib=rb-4.1.0" alt="Vestido de noiva pendurado no ateliê com bouquet" loading="lazy" decoding="async">
   </div>
   <div>
-    <h2 class="am-expect__title">O que esperar</h2>
-    <p class="am-expect__text">Escolher o seu vestido de noiva é uma experiência guiada pela beleza atemporal, por tecidos macios e pela elegância de cada peça. Cada vestido conta uma história — uma parceria entre você e o nosso ateliê. Cuidamos de cada detalhe para que você viva esse momento com leveza, do primeiro esboço ao último ponto.</p>
+    <h2 class="am-expect__title am-reveal">O que esperar</h2>
+    <p class="am-expect__text am-reveal" data-delay="1">Escolher o seu vestido de noiva é uma experiência guiada pela beleza atemporal, por tecidos macios e pela elegância de cada peça. Cada vestido conta uma história — uma parceria entre você e o nosso ateliê. Cuidamos de cada detalhe para que você viva esse momento com leveza, do primeiro esboço ao último ponto.</p>
   </div>
 </section>
 
-<!-- ============================================================
-     8. AGENDAR CONSULTA
-     ============================================================ -->
+<!-- 8. AGENDAR CONSULTA -->
 <section class="am-book" id="contato">
   <div>
-    <p class="am-eyebrow">Marque sua Consulta</p>
-    <h2 class="am-book__title">Reserve seu horário no ateliê</h2>
-    <p class="am-book__text">Adoraríamos recebê-la no ateliê para uma consulta particular. Marque um horário abaixo e conte-nos sobre sua coleção atual, opções personalizadas e ideias de styling.</p>
-    <a href="https://wa.me/351933459640?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20uma%20consulta%20no%20ateli%C3%AA." target="_blank" rel="noopener" class="am-btn am-btn--solid">Agendar Aqui</a>
+    <p class="am-eyebrow am-reveal">Marque sua Consulta</p>
+    <h2 class="am-book__title am-reveal" data-delay="1">Reserve seu horário no ateliê</h2>
+    <p class="am-book__text am-reveal" data-delay="2">Adoraríamos recebê-la no ateliê para uma consulta particular. Marque um horário abaixo e conte-nos sobre sua coleção atual, opções personalizadas e ideias de styling.</p>
+    <a href="https://wa.me/351933459640?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20uma%20consulta%20no%20ateli%C3%AA." target="_blank" rel="noopener noreferrer" class="am-btn am-btn--solid am-reveal" data-delay="3">Agendar Aqui</a>
   </div>
-  <div class="am-book__photo">
-    <svg viewBox="0 0 100 160" fill="none" stroke="#fff" stroke-width="0.6"><path d="M50 6 C42 6 36 14 36 20 C36 26 40 30 40 30 L34 40 C24 58 22 84 26 118 L28 154 L72 154 L74 118 C78 84 76 58 66 40 L60 30 C60 30 64 26 64 20 C64 14 58 6 50 6 Z" opacity="0.75"/></svg>
+  <div class="am-frame am-book__photo am-reveal" data-delay="1">
+    <img src="https://images.unsplash.com/photo-1753162657535-0710ef1888df?crop=entropy&cs=srgb&fm=jpg&q=80&w=800&ixlib=rb-4.1.0" alt="Estilista trabalhando no ateliê Ashley Medina" loading="lazy" decoding="async">
   </div>
 </section>
 
-<!-- ============================================================
-     9. WORDMARK
-     ============================================================ -->
-<div class="am-wordmark"><h2>Ashley Medina</h2></div>
+<!-- 9. WORDMARK -->
+<div class="am-wordmark"><h2 class="am-reveal">Ashley Medina</h2></div>
 
-<!-- ============================================================
-     RODAPÉ
-     ============================================================ -->
+<!-- RODAPÉ -->
 <footer class="am-footer">
   <div class="am-footer__top">
     <div>
@@ -535,8 +543,8 @@
         <li>2845-132 Seixal</li>
         <li>Terça a sábado, 9h às 18h</li>
         <li>Visitas com agendamento prévio</li>
-        <li><a href="https://wa.me/351933459640" target="_blank" rel="noopener">+351 933 459 640</a></li>
-        <li><a href="https://instagram.com/costura.medina" target="_blank" rel="noopener">@costura.medina</a></li>
+        <li><a href="https://wa.me/351933459640" target="_blank" rel="noopener noreferrer">+351 933 459 640</a></li>
+        <li><a href="https://instagram.com/costura.medina" target="_blank" rel="noopener noreferrer">@costura.medina</a></li>
       </ul>
     </div>
   </div>
@@ -546,39 +554,80 @@
   </div>
 </footer>
 
-<a class="am-float-wa" href="https://wa.me/351933459640?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20os%20vestidos." target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
-  <svg viewBox="0 0 32 32"><path d="M16 3C9 3 3.3 8.6 3.3 15.5c0 2.5.7 4.8 1.9 6.8L3 29l7-1.8c1.9 1 4 1.6 6 1.6 7 0 12.7-5.6 12.7-12.5S23 3 16 3zm0 22.7c-1.9 0-3.7-.5-5.3-1.4l-.4-.2-4.2 1.1 1.1-4-.3-.4c-1-1.6-1.6-3.5-1.6-5.5C5.3 9.8 10.1 5 16 5s10.7 4.8 10.7 10.5S21.9 25.7 16 25.7z"/></svg>
+<a class="am-float-wa" href="https://wa.me/351933459640?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20os%20vestidos." target="_blank" rel="noopener noreferrer" aria-label="Falar no WhatsApp">
+  <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3C9 3 3.3 8.6 3.3 15.5c0 2.5.7 4.8 1.9 6.8L3 29l7-1.8c1.9 1 4 1.6 6 1.6 7 0 12.7-5.6 12.7-12.5S23 3 16 3zm0 22.7c-1.9 0-3.7-.5-5.3-1.4l-.4-.2-4.2 1.1 1.1-4-.3-.4c-1-1.6-1.6-3.5-1.6-5.5C5.3 9.8 10.1 5 16 5s10.7 4.8 10.7 10.5S21.9 25.7 16 25.7z"/></svg>
 </a>
 
 </div>
 
 <script>
 (function(){
+  'use strict';
+
+  /* --- Menu mobile --- */
   var toggle = document.querySelector('[data-am-menu-toggle]');
   var overlay = document.querySelector('[data-am-menu-overlay]');
-  if(!toggle || !overlay) return;
-
-  function openMenu(){
-    overlay.classList.add('is-open');
-    toggle.classList.add('is-active');
-    toggle.setAttribute('aria-expanded', 'true');
-    document.body.style.overflow = 'hidden';
+  if(toggle && overlay){
+    function openMenu(){
+      overlay.classList.add('is-open');
+      toggle.classList.add('is-active');
+      toggle.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeMenu(){
+      overlay.classList.remove('is-open');
+      toggle.classList.remove('is-active');
+      toggle.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
+    toggle.addEventListener('click', function(){
+      overlay.classList.contains('is-open') ? closeMenu() : openMenu();
+    });
+    document.querySelectorAll('[data-am-menu-link]').forEach(function(link){
+      link.addEventListener('click', closeMenu);
+    });
+    document.addEventListener('keydown', function(e){
+      if(e.key === 'Escape'){ closeMenu(); }
+    });
   }
-  function closeMenu(){
-    overlay.classList.remove('is-open');
-    toggle.classList.remove('is-active');
-    toggle.setAttribute('aria-expanded', 'false');
-    document.body.style.overflow = '';
+
+  /* --- Topbar com fundo ao rolar --- */
+  var topbar = document.querySelector('[data-am-topbar]');
+  if(topbar){
+    var onScroll = function(){
+      topbar.classList.toggle('is-stuck', window.scrollY > 24);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
   }
 
-  toggle.addEventListener('click', function(){
-    if(overlay.classList.contains('is-open')){ closeMenu(); } else { openMenu(); }
-  });
-  document.querySelectorAll('[data-am-menu-link]').forEach(function(link){
-    link.addEventListener('click', closeMenu);
-  });
-  document.addEventListener('keydown', function(e){
-    if(e.key === 'Escape'){ closeMenu(); }
+  /* --- Revelação no scroll --- */
+  var reveals = document.querySelectorAll('.am-reveal');
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          entry.target.classList.add('is-in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    reveals.forEach(function(el){ io.observe(el); });
+  } else {
+    reveals.forEach(function(el){ el.classList.add('is-in'); });
+  }
+
+  /* --- Scroll suave para âncoras --- */
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){
+    a.addEventListener('click', function(e){
+      var id = a.getAttribute('href');
+      if(id.length < 2) return;
+      var target = document.querySelector(id);
+      if(target){
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
   });
 })();
 </script>

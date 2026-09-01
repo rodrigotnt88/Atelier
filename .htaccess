@@ -1,0 +1,41 @@
+# ============================================================
+#  Ashley Medina — Cibersegurança (Apache)
+# ============================================================
+
+# Forçar HTTPS
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{HTTPS} off
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+</IfModule>
+
+# Cabeçalhos de segurança
+<IfModule mod_headers.c>
+  Header always set Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "DENY"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()"
+  Header always set Cross-Origin-Opener-Policy "same-origin"
+  Header always set Cross-Origin-Resource-Policy "same-origin"
+  Header always set X-Permitted-Cross-Domain-Policies "none"
+  Header always set Content-Security-Policy "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; img-src 'self' https://images.unsplash.com data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self' 'unsafe-inline'; connect-src 'self' https://wa.me https://api.whatsapp.com; upgrade-insecure-requests"
+  # Remover cabeçalhos que expõem a tecnologia do servidor
+  Header unset X-Powered-By
+  Header unset Server
+</IfModule>
+
+# Bloquear acesso a ficheiros sensíveis
+<FilesMatch "(^\.|\.(htaccess|htpasswd|env|ini|log|bak|config|git)$)">
+  Require all denied
+</FilesMatch>
+
+# Desativar listagem de diretórios
+Options -Indexes
+
+# Impedir hotlinking de imagens (ajuste o domínio)
+# <IfModule mod_rewrite.c>
+#   RewriteCond %{HTTP_REFERER} !^$
+#   RewriteCond %{HTTP_REFERER} !^https://(www\.)?ashleymedina\.pt [NC]
+#   RewriteRule \.(jpg|jpeg|png|gif|webp)$ - [F]
+# </IfModule>
