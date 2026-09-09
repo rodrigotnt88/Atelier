@@ -57,6 +57,8 @@
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }
+.am-root::selection { background: var(--ink); color: var(--cream); }
+.am-root { scroll-behavior: smooth; }
 .am-root img { max-width: 100%; display: block; }
 
 .am-eyebrow {
@@ -71,10 +73,14 @@
   padding: 15px 32px; border-radius: 100px;
   border: 1px solid var(--ink); background: transparent; color: var(--ink);
   text-decoration: none; cursor: pointer;
-  transition: background .35s ease, color .35s ease, transform .35s ease;
+  position: relative; overflow: hidden;
+  transition: background .35s ease, color .35s ease, transform .35s ease, box-shadow .35s ease;
   white-space: nowrap;
 }
-.am-btn:hover { background: var(--ink); color: var(--cream); transform: translateY(-2px); }
+.am-btn::after { content: ""; position: absolute; inset: 0; transform: translateX(-102%); background: rgba(255,255,255,0.12); transition: transform .45s cubic-bezier(.2,.7,.2,1); }
+.am-btn:hover::after { transform: translateX(0); }
+.am-btn:hover { background: var(--ink); color: var(--cream); transform: translateY(-3px); box-shadow: 0 12px 24px rgba(27,24,21,0.14); }
+.am-btn > * { position: relative; z-index: 1; }
 .am-btn--solid { background: var(--ink); color: var(--cream); }
 .am-btn--solid:hover { background: transparent; color: var(--ink); }
 
@@ -89,6 +95,8 @@
 .am-frame { position: relative; overflow: hidden; background: var(--blush-deep); }
 .am-frame img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.1s cubic-bezier(.2,.7,.2,1); }
 .am-frame:hover img { transform: scale(1.05); }
+.am-frame::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(135deg, rgba(255,255,255,0.15), transparent 32%, transparent 70%, rgba(27,24,21,0.14)); opacity: .45; transition: opacity .5s ease; }
+.am-frame:hover::after { opacity: .8; }
 
 /* foto ampliável (lupa) */
 .am-zoomable { cursor: zoom-in; }
@@ -111,7 +119,7 @@
   display: flex; align-items: center; justify-content: space-between;
   padding: 22px 6vw;
   background: rgba(247,241,232,0);
-  transition: background .4s ease, padding .4s ease, box-shadow .4s ease, backdrop-filter .4s ease;
+  transition: background .4s ease, padding .4s ease, box-shadow .4s ease, backdrop-filter .4s ease, transform .4s ease;
 }
 .am-topbar.is-stuck {
   background: rgba(247,241,232,0.82);
@@ -120,6 +128,7 @@
   padding: 16px 6vw;
 }
 .am-topbar__mark { font-family: var(--display); font-size: 17px; letter-spacing: 0.06em; }
+.am-topbar__mark::before { content: "AM"; display: inline-grid; place-items: center; width: 28px; height: 28px; margin-right: 10px; border: 1px solid var(--ink); border-radius: 50%; font-family: var(--body); font-size: 8px; letter-spacing: .08em; vertical-align: -1px; }
 .am-topbar__right { display: flex; align-items: center; gap: 30px; }
 .am-topbar__nav { display: flex; gap: 30px; }
 .am-topbar__nav a {
@@ -131,6 +140,9 @@
   background: var(--ink); transition: width .35s ease;
 }
 .am-topbar__nav a:hover::after { width: 100%; }
+.am-topbar__nav a.is-active::after { width: 100%; }
+.am-scroll-progress { position: fixed; top: 0; left: 0; right: 0; height: 2px; z-index: 120; pointer-events: none; background: rgba(27,24,21,.08); }
+.am-scroll-progress span { display: block; width: 0; height: 100%; background: var(--ink); transform-origin: left; transition: width .12s linear; }
 
 /* seletor de idioma */
 .am-lang { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; letter-spacing: 0.1em; }
@@ -176,13 +188,21 @@
 /* ============================================================
    HERO
    ============================================================ */
-.am-hero { padding: 40px 6vw 90px; display: grid; grid-template-columns: 1fr 0.85fr; gap: 70px; align-items: center; }
+.am-hero { position: relative; min-height: min(760px, 84vh); padding: 56px 6vw 100px; display: grid; grid-template-columns: 1fr 0.85fr; gap: 70px; align-items: center; }
+.am-hero::before { content: "ASHLEY MEDINA"; position: absolute; right: 2vw; bottom: 24px; writing-mode: vertical-rl; font-size: 9px; letter-spacing: .42em; color: rgba(27,24,21,.42); }
 .am-hero__eyebrow { margin-bottom: 20px; }
+.am-hero__eyebrow::before { content: ""; display: inline-block; width: 34px; height: 1px; margin: 0 12px 4px 0; background: currentColor; }
 .am-hero__title { font-family: var(--display); font-weight: 500; font-size: clamp(38px, 5.2vw, 62px); line-height: 1.06; margin: 0 0 26px; }
 .am-hero__title em { font-style: italic; font-weight: 400; }
 .am-hero__text { font-size: 14.5px; line-height: 1.85; color: var(--charcoal); font-weight: 300; max-width: 46ch; margin: 0 0 34px; }
 .am-hero__actions { display: flex; gap: 14px; flex-wrap: wrap; }
-.am-hero__photo { aspect-ratio: 3/3.9; }
+.am-hero__scroll { display: inline-flex; align-items: center; gap: 12px; margin-top: 58px; font-size: 9px; letter-spacing: .22em; text-transform: uppercase; color: var(--charcoal); }
+.am-hero__scroll i { display: block; width: 42px; height: 1px; background: currentColor; position: relative; overflow: hidden; }
+.am-hero__scroll i::after { content: ""; position: absolute; inset: 0; background: var(--ink); transform: translateX(-100%); animation: am-scan 2.2s ease-in-out infinite; }
+@keyframes am-scan { 0%, 100% { transform: translateX(-100%); } 50% { transform: translateX(100%); } }
+.am-hero__photo { --hero-x: 0px; --hero-y: 0px; aspect-ratio: 3/3.9; transform: translate3d(var(--hero-x), var(--hero-y), 0); transition: transform .18s ease-out; box-shadow: 0 28px 60px rgba(27,24,21,0.14); }
+.am-hero__photo img { transform: scale(1.02); }
+.am-hero__photo:hover img { transform: scale(1.08); }
 @media (max-width: 900px) {
   .am-hero { grid-template-columns: 1fr; padding: 30px 6vw 60px; gap: 40px; }
   .am-hero__photo { order: -1; aspect-ratio: 4/3.4; }
@@ -204,7 +224,8 @@
 
 /* SERVIÇOS */
 .am-services { padding: 110px 6vw; background: var(--white); }
-.am-services__head { text-align: center; margin-bottom: 60px; }
+.am-services__head { text-align: center; margin-bottom: 60px; position: relative; }
+.am-services__head::before { content: "02 / SERVICES"; display: block; margin-bottom: 16px; font-size: 10px; letter-spacing: .24em; color: var(--charcoal); }
 .am-services__head h2 { font-family: var(--display); font-size: clamp(28px, 3.6vw, 42px); margin: 0; }
 .am-services__body { display: grid; grid-template-columns: 0.9fr 1fr; gap: 70px; align-items: center; }
 .am-services__photo { aspect-ratio: 3/3.9; }
@@ -212,10 +233,13 @@
 .am-services__list li { counter-increment: am-service; padding: 20px 0; border-bottom: 1px solid var(--line); font-size: 15.5px; transition: padding-left .35s ease, color .35s ease; }
 .am-services__list li::before { content: counter(am-service, decimal-leading-zero) ". "; color: var(--charcoal); }
 .am-services__list li:hover { padding-left: 12px; color: var(--charcoal); }
+.am-services__list li::after { content: "↗"; float: right; opacity: 0; transform: translate(-8px, 4px); transition: opacity .3s ease, transform .3s ease; }
+.am-services__list li:hover::after { opacity: 1; transform: translate(0, 4px); }
 @media (max-width: 900px) { .am-services__body { grid-template-columns: 1fr; gap: 40px; } .am-services { padding: 80px 6vw; } }
 
 /* FUNDADORA */
-.am-founder { background: var(--blush-deep); padding: 90px 6vw; display: grid; grid-template-columns: 0.5fr 1fr; gap: 50px; align-items: center; }
+.am-founder { position: relative; background: var(--blush-deep); padding: 120px 6vw; display: grid; grid-template-columns: 0.5fr 1fr; gap: 50px; align-items: center; }
+.am-founder::before { content: "03 / THE ATELIER"; position: absolute; top: 34px; left: 6vw; font-size: 10px; letter-spacing: .24em; color: var(--charcoal); }
 .am-founder__photo { aspect-ratio: 1/1.15; border-radius: 6px; }
 .am-founder__eyebrow { margin-bottom: 12px; }
 .am-founder__name { font-family: var(--display); font-style: italic; font-size: clamp(26px, 3.2vw, 34px); margin: 0 0 16px; }
@@ -223,25 +247,29 @@
 @media (max-width: 760px) { .am-founder { grid-template-columns: 1fr; padding: 70px 6vw; gap: 30px; } .am-founder__photo { max-width: 260px; } }
 
 /* INSPIRAÇÃO */
-.am-inspire { text-align: center; padding: 110px 6vw 90px; }
+.am-inspire { position: relative; text-align: center; padding: 150px 6vw 130px; background: radial-gradient(circle at 50% 46%, rgba(239,223,206,.72), transparent 46%), var(--cream); }
+.am-inspire::before { content: "THE ASHLEY MEDINA SIGNATURE"; display: block; margin-bottom: 24px; font-size: 10px; letter-spacing: .28em; color: var(--charcoal); }
 .am-inspire p { font-family: var(--display); font-size: clamp(22px, 3.2vw, 36px); line-height: 1.4; max-width: 22ch; margin: 0 auto 40px; }
 .am-inspire em { font-style: italic; }
 
 /* NOIVAS */
-.am-brides { padding: 0 6vw 60px; }
+.am-brides { padding: 20px 6vw 100px; }
+.am-brides__head::before { content: "04 / PORTRAITS"; display: block; margin-bottom: 16px; font-size: 10px; letter-spacing: .24em; color: var(--charcoal); }
 .am-brides__head { text-align: left; margin-bottom: 14px; }
 .am-brides__head h2 { font-family: var(--display); font-size: clamp(26px, 3.2vw, 36px); margin: 0; }
 .am-brides__head h2 em { font-style: italic; }
 .am-brides__hint { font-size: 12px; color: var(--charcoal); font-weight: 300; margin: 0 0 34px; display: inline-flex; align-items: center; gap: 8px; }
 .am-brides__hint svg { width: 15px; height: 15px; stroke: var(--charcoal); fill: none; stroke-width: 2; }
-.am-brides__row { display: flex; gap: 22px; overflow-x: auto; padding-bottom: 10px; scroll-snap-type: x mandatory; }
+.am-brides__row { display: flex; gap: 22px; overflow-x: auto; padding: 4px 0 16px; scroll-snap-type: x mandatory; scrollbar-width: thin; scrollbar-color: var(--charcoal) transparent; }
 .am-bride { flex: 0 0 auto; width: 240px; scroll-snap-align: start; }
 .am-bride__photo { aspect-ratio: 3/4; margin-bottom: 14px; }
-.am-bride__name { font-family: var(--display); font-style: italic; font-size: 15px; text-align: center; }
+.am-bride__name { font-family: var(--display); font-style: italic; font-size: 15px; text-align: center; transition: letter-spacing .35s ease, color .35s ease; }
+.am-bride:hover .am-bride__name { letter-spacing: .08em; color: var(--charcoal); }
 @media (max-width: 640px) { .am-bride { width: 66vw; } }
 
 /* DEPOIMENTOS */
-.am-testi { background: var(--blush); padding: 100px 6vw; }
+.am-testi { background: var(--blush); padding: 120px 6vw; }
+.am-testi__head::before { content: "05 / WORDS FROM BRIDES"; display: block; margin-bottom: 16px; font-size: 10px; letter-spacing: .24em; color: var(--charcoal); }
 .am-testi__head { text-align: center; margin-bottom: 56px; }
 .am-testi__head h2 { font-family: var(--display); font-size: clamp(26px, 3.2vw, 38px); margin: 0; }
 .am-testi__head h2 em { font-style: italic; }
@@ -294,7 +322,8 @@
 @media (max-width: 760px) { .am-expect { grid-template-columns: 1fr; padding: 70px 6vw 80px; gap: 26px; } .am-expect__photo { max-width: 260px; } }
 
 /* AGENDAR + FORMULÁRIO */
-.am-book { padding: 100px 6vw; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+.am-book { position: relative; padding: 130px 6vw; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+.am-book::before { content: "06 / PRIVATE APPOINTMENTS"; position: absolute; top: 38px; left: 6vw; font-size: 10px; letter-spacing: .24em; color: var(--charcoal); }
 .am-book__title { font-family: var(--display); font-size: clamp(28px, 3.6vw, 40px); margin: 0 0 20px; }
 .am-book__text { font-size: 13.5px; line-height: 1.85; color: var(--charcoal); font-weight: 300; max-width: 42ch; margin: 0 0 30px; }
 .am-book__contact { font-size: 13px; color: var(--charcoal); font-weight: 300; line-height: 2; }
@@ -380,6 +409,21 @@
   .am-lightbox__hint { display: none; }
 }
 @media (hover: none) { .am-lightbox__stage { cursor: default; } }
+@media (max-width: 760px) {
+  .am-hero { min-height: auto; padding-top: 26px; }
+  .am-hero::before { display: none; }
+  .am-hero__scroll { margin-top: 38px; }
+  .am-founder { padding-top: 96px; }
+  .am-founder::before, .am-book::before { left: 6vw; }
+  .am-inspire { padding-top: 110px; padding-bottom: 100px; }
+  .am-testi { padding-top: 90px; padding-bottom: 90px; }
+}
+@media (max-width: 420px) {
+  .am-topbar { padding-left: 5vw; padding-right: 5vw; }
+  .am-topbar__mark { font-size: 15px; }
+  .am-topbar__mark::before { width: 25px; height: 25px; margin-right: 7px; }
+  .am-hero__scroll { margin-top: 30px; }
+}
 
 .am-root a:focus-visible, .am-root button:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
 .am-lightbox button:focus-visible { outline-color: var(--cream); }
@@ -413,6 +457,7 @@
     </button>
   </div>
 </header>
+<div class="am-scroll-progress" aria-hidden="true"><span data-am-scroll-progress></span></div>
 
 <div class="am-menu-overlay" data-am-menu-overlay>
   <div class="am-menu-overlay__top">
@@ -441,6 +486,7 @@
       <a href="#servicos" class="am-btn am-btn--solid" data-i18n="hero.cta1">Ver Coleção</a>
       <a href="#contato" class="am-btn" data-i18n="hero.cta2">Agendar Consulta</a>
     </div>
+    <div class="am-hero__scroll" aria-hidden="true"><span>Scroll to discover</span><i></i></div>
   </div>
   <div class="am-frame am-hero__photo am-zoomable am-reveal" data-delay="1" tabindex="0" role="button" aria-label="Ampliar imagem">
     <img src="images/hero-noiva.jpg" alt="Noiva com vestido de tule em camadas do ateliê Ashley Medina" loading="eager" decoding="async">
@@ -794,6 +840,37 @@
     var onScroll = function(){ topbar.classList.toggle('is-stuck', window.scrollY > 24); };
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
+  }
+
+  /* --- Progresso editorial e navegação ativa --- */
+  var progress = document.querySelector('[data-am-scroll-progress]');
+  var navLinks = document.querySelectorAll('.am-topbar__nav a');
+  var sections = Array.prototype.map.call(navLinks, function(link){ return document.querySelector(link.getAttribute('href')); }).filter(Boolean);
+  var updateReadingProgress = function(){
+    var max = document.documentElement.scrollHeight - window.innerHeight;
+    if(progress) progress.style.width = (max > 0 ? (window.scrollY / max * 100) : 0) + '%';
+    var current = '';
+    sections.forEach(function(section){ if(window.scrollY >= section.offsetTop - 180) current = '#' + section.id; });
+    navLinks.forEach(function(link){ link.classList.toggle('is-active', link.getAttribute('href') === current); });
+  };
+  window.addEventListener('scroll', updateReadingProgress, { passive: true });
+  updateReadingProgress();
+
+  /* --- Parallax delicado na imagem principal --- */
+  var heroPhoto = document.querySelector('.am-hero__photo');
+  var canParallax = window.matchMedia && window.matchMedia('(hover: hover) and (prefers-reduced-motion: no-preference)').matches;
+  if(heroPhoto && canParallax){
+    heroPhoto.addEventListener('pointermove', function(e){
+      var rect = heroPhoto.getBoundingClientRect();
+      var x = (e.clientX - rect.left) / rect.width - .5;
+      var y = (e.clientY - rect.top) / rect.height - .5;
+      heroPhoto.style.setProperty('--hero-x', (x * 8).toFixed(2) + 'px');
+      heroPhoto.style.setProperty('--hero-y', (y * 8).toFixed(2) + 'px');
+    });
+    heroPhoto.addEventListener('pointerleave', function(){
+      heroPhoto.style.setProperty('--hero-x', '0px');
+      heroPhoto.style.setProperty('--hero-y', '0px');
+    });
   }
 
   /* --- Revelação no scroll --- */
