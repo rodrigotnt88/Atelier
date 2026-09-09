@@ -394,6 +394,15 @@
 .am-lightbox__cap { position: absolute; left: 0; right: 0; bottom: -34px; text-align: center; color: var(--cream); font-family: var(--display); font-style: italic; font-size: 16px; }
 .am-lightbox__counter { position: absolute; right: 32px; bottom: 30px; display: inline-flex; align-items: center; gap: 10px; color: rgba(247,241,232,.72); font-size: 10px; letter-spacing: .18em; }
 .am-lightbox__counter i { display: block; width: 26px; height: 1px; background: rgba(247,241,232,.45); }
+.am-lightbox__details { display: none; position: absolute; left: 32px; bottom: 30px; width: min(300px, 31vw); color: var(--cream); }
+.am-lightbox.has-details .am-lightbox__details { display: block; }
+.am-lightbox__detail-block { padding: 14px 0; border-top: 1px solid rgba(247,241,232,.24); }
+.am-lightbox__detail-block:last-of-type { border-bottom: 1px solid rgba(247,241,232,.24); }
+.am-lightbox__detail-label { display: block; margin-bottom: 6px; color: rgba(247,241,232,.58); font-size: 9px; letter-spacing: .2em; text-transform: uppercase; }
+.am-lightbox__detail-block strong { display: block; font-family: var(--display); font-size: 17px; font-weight: 400; line-height: 1.35; }
+.am-lightbox__detail-cta { display: inline-flex; align-items: center; gap: 12px; margin-top: 18px; color: var(--cream); font-size: 10px; letter-spacing: .12em; text-decoration: none; text-transform: uppercase; }
+.am-lightbox__detail-cta span { font-size: 16px; transition: transform .25s ease; }
+.am-lightbox__detail-cta:hover span { transform: translate(3px, -3px); }
 .am-lightbox__close, .am-lightbox__nav {
   position: absolute; z-index: 6; background: rgba(247,241,232,0.14); border: 1px solid rgba(247,241,232,0.3);
   color: var(--cream); cursor: pointer; border-radius: 50%; width: 48px; height: 48px;
@@ -416,6 +425,11 @@
   .am-lightbox__stage { width: 86vw; height: 78vh; }
   .am-lightbox__brand { top: 20px; left: 20px; font-size: 13px; }
   .am-lightbox__counter { right: 20px; bottom: 20px; }
+  .am-lightbox.has-details .am-lightbox__details { left: 20px; right: 20px; bottom: 58px; width: auto; display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .am-lightbox__detail-block { padding: 10px 0; }
+  .am-lightbox__detail-block:last-of-type { border-bottom: none; }
+  .am-lightbox__detail-block strong { font-size: 14px; }
+  .am-lightbox__detail-cta { grid-column: 1 / -1; margin-top: 2px; }
   .am-lens { width: 150px; height: 150px; }
   .am-lightbox__hint { display: none; }
 }
@@ -578,27 +592,27 @@
   </p>
   <div class="am-brides__row">
     <div class="am-bride am-reveal">
-      <div class="am-frame am-bride__photo am-zoomable" tabindex="0" role="button" aria-label="Ampliar vestido de Beatriz"><img src="https://images.unsplash.com/photo-1579583764988-3e08c6132d2a?crop=entropy&cs=srgb&fm=jpg&q=80&w=500&ixlib=rb-4.1.0" alt="Noiva Beatriz vestindo Ateliê Ashley Medina" loading="lazy" decoding="async"><span class="am-zoom-badge"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></span></div>
+      <div class="am-frame am-bride__photo am-zoomable" data-fabric-pt="Seda mikado" data-customization-pt="Mangas removíveis · decote personalizado · cauda ajustável" data-fabric-en="Silk mikado" data-customization-en="Detachable sleeves · custom neckline · adjustable train" tabindex="0" role="button" aria-label="Ampliar vestido de Beatriz"><img src="https://images.unsplash.com/photo-1579583764988-3e08c6132d2a?crop=entropy&cs=srgb&fm=jpg&q=80&w=500&ixlib=rb-4.1.0" alt="Noiva Beatriz vestindo Ateliê Ashley Medina" loading="lazy" decoding="async"><span class="am-zoom-badge"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></span></div>
       <p class="am-bride__name">Beatriz</p>
     </div>
     <div class="am-bride am-reveal" data-delay="1">
-      <div class="am-frame am-bride__photo am-zoomable" tabindex="0" role="button" aria-label="Ampliar vestido de Carolina"><img src="https://images.unsplash.com/photo-1543251587-2c12b825469a?crop=entropy&cs=srgb&fm=jpg&q=80&w=500&ixlib=rb-4.1.0" alt="Noiva Carolina vestindo Ateliê Ashley Medina" loading="lazy" decoding="async"><span class="am-zoom-badge"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></span></div>
+      <div class="am-frame am-bride__photo am-zoomable" data-fabric-pt="Renda francesa e tule" data-customization-pt="Bordado manual · alças reguláveis · véu coordenado" data-fabric-en="French lace and tulle" data-customization-en="Hand embroidery · adjustable straps · coordinated veil" tabindex="0" role="button" aria-label="Ampliar vestido de Carolina"><img src="https://images.unsplash.com/photo-1543251587-2c12b825469a?crop=entropy&cs=srgb&fm=jpg&q=80&w=500&ixlib=rb-4.1.0" alt="Noiva Carolina vestindo Ateliê Ashley Medina" loading="lazy" decoding="async"><span class="am-zoom-badge"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></span></div>
       <p class="am-bride__name">Carolina</p>
     </div>
     <div class="am-bride am-reveal" data-delay="2">
-      <div class="am-frame am-bride__photo am-zoomable" tabindex="0" role="button" aria-label="Ampliar vestido de Mariana"><img src="https://images.unsplash.com/photo-1484849457281-191e439a0431?crop=entropy&cs=srgb&fm=jpg&q=80&w=500&ixlib=rb-4.1.0" alt="Noiva Mariana vestindo Ateliê Ashley Medina" loading="lazy" decoding="async"><span class="am-zoom-badge"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></span></div>
+      <div class="am-frame am-bride__photo am-zoomable" data-fabric-pt="Crepe de seda" data-customization-pt="Forro acetinado · costas modeladas · comprimento sob medida" data-fabric-en="Silk crepe" data-customization-en="Satin lining · sculpted back · custom length" tabindex="0" role="button" aria-label="Ampliar vestido de Mariana"><img src="https://images.unsplash.com/photo-1484849457281-191e439a0431?crop=entropy&cs=srgb&fm=jpg&q=80&w=500&ixlib=rb-4.1.0" alt="Noiva Mariana vestindo Ateliê Ashley Medina" loading="lazy" decoding="async"><span class="am-zoom-badge"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></span></div>
       <p class="am-bride__name">Mariana</p>
     </div>
     <div class="am-bride am-reveal" data-delay="3">
-      <div class="am-frame am-bride__photo am-zoomable" tabindex="0" role="button" aria-label="Ampliar vestido de Inês"><img src="https://images.unsplash.com/photo-1779055660224-882f4c02bc50?crop=entropy&cs=srgb&fm=jpg&q=80&w=500&ixlib=rb-4.1.0" alt="Noiva Inês vestindo Ateliê Ashley Medina" loading="lazy" decoding="async"><span class="am-zoom-badge"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></span></div>
+      <div class="am-frame am-bride__photo am-zoomable" data-fabric-pt="Organza de seda" data-customization-pt="Aplicações 3D · sobressaia removível · cintura marcada" data-fabric-en="Silk organza" data-customization-en="3D appliqué · detachable overskirt · defined waist" tabindex="0" role="button" aria-label="Ampliar vestido de Inês"><img src="https://images.unsplash.com/photo-1779055660224-882f4c02bc50?crop=entropy&cs=srgb&fm=jpg&q=80&w=500&ixlib=rb-4.1.0" alt="Noiva Inês vestindo Ateliê Ashley Medina" loading="lazy" decoding="async"><span class="am-zoom-badge"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></span></div>
       <p class="am-bride__name">Inês</p>
     </div>
     <div class="am-bride am-reveal">
-      <div class="am-frame am-bride__photo am-zoomable" tabindex="0" role="button" aria-label="Ampliar vestido de Sofia"><img src="https://images.unsplash.com/photo-1624091844772-554661d10173?crop=entropy&cs=srgb&fm=jpg&q=80&w=500&ixlib=rb-4.1.0" alt="Noiva Sofia vestindo Ateliê Ashley Medina" loading="lazy" decoding="async"><span class="am-zoom-badge"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></span></div>
+      <div class="am-frame am-bride__photo am-zoomable" data-fabric-pt="Chiffon e cetim" data-customization-pt="Corpete estruturado · mangas personalizadas · decote à escolha" data-fabric-en="Chiffon and satin" data-customization-en="Structured bodice · bespoke sleeves · neckline of choice" tabindex="0" role="button" aria-label="Ampliar vestido de Sofia"><img src="https://images.unsplash.com/photo-1624091844772-554661d10173?crop=entropy&cs=srgb&fm=jpg&q=80&w=500&ixlib=rb-4.1.0" alt="Noiva Sofia vestindo Ateliê Ashley Medina" loading="lazy" decoding="async"><span class="am-zoom-badge"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></span></div>
       <p class="am-bride__name">Sofia</p>
     </div>
     <div class="am-bride am-reveal" data-delay="1">
-      <div class="am-frame am-bride__photo am-zoomable" tabindex="0" role="button" aria-label="Ampliar vestido de Matilde"><img src="https://images.unsplash.com/photo-1600973450758-826872a3aaca?crop=entropy&cs=srgb&fm=jpg&q=80&w=500&ixlib=rb-4.1.0" alt="Noiva Matilde vestindo Ateliê Ashley Medina" loading="lazy" decoding="async"><span class="am-zoom-badge"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></span></div>
+      <div class="am-frame am-bride__photo am-zoomable" data-fabric-pt="Cetim duchesse" data-customization-pt="Pérolas aplicadas à mão · corpete esculpido · cauda alongada" data-fabric-en="Duchesse satin" data-customization-en="Hand-applied pearls · sculpted bodice · extended train" tabindex="0" role="button" aria-label="Ampliar vestido de Matilde"><img src="https://images.unsplash.com/photo-1600973450758-826872a3aaca?crop=entropy&cs=srgb&fm=jpg&q=80&w=500&ixlib=rb-4.1.0" alt="Noiva Matilde vestindo Ateliê Ashley Medina" loading="lazy" decoding="async"><span class="am-zoom-badge"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></span></div>
       <p class="am-bride__name">Matilde</p>
     </div>
   </div>
@@ -742,6 +756,17 @@
     <div class="am-lens" data-am-lb-lens></div>
     <div class="am-lightbox__cap" data-am-lb-cap></div>
   </div>
+  <aside class="am-lightbox__details" aria-label="Detalhes do vestido">
+    <div class="am-lightbox__detail-block">
+      <span class="am-lightbox__detail-label" data-i18n="gallery.fabric">Tecido</span>
+      <strong data-am-lb-fabric></strong>
+    </div>
+    <div class="am-lightbox__detail-block">
+      <span class="am-lightbox__detail-label" data-i18n="gallery.customization">Personalização</span>
+      <strong data-am-lb-customization></strong>
+    </div>
+    <a class="am-lightbox__detail-cta" href="#contato" data-am-lb-consultation data-i18n-html="gallery.cta">Conversar sobre este modelo <span>↗</span></a>
+  </aside>
 </div>
 
 <script>
@@ -783,6 +808,8 @@
       'insp.cta': 'Explore',
       'brides.head': 'Featured <em>Brides</em>',
       'brides.hint': 'Click a photo and hover to inspect the details with the magnifier',
+      'gallery.fabric': 'Fabric', 'gallery.customization': 'Bespoke details',
+      'gallery.cta': 'Talk about this design <span>↗</span>',
       'testi.head': 'What our <em>brides</em> say',
       'testi.q1': '“Ashley turned a vague idea into a gown that felt made just for me. Every fitting was a magical moment.”',
       'testi.a1': 'Beatriz · Lisbon',
@@ -966,6 +993,9 @@
     var stage = lb.querySelector('[data-am-lb-stage]');
     var counter = lb.querySelector('[data-am-lb-current]');
     var total = lb.querySelector('[data-am-lb-total]');
+    var fabric = lb.querySelector('[data-am-lb-fabric]');
+    var customization = lb.querySelector('[data-am-lb-customization]');
+    var consultation = lb.querySelector('[data-am-lb-consultation]');
     var ZOOM = 2.4;
     var lastFocused = null;
     var touchStartX = null;
@@ -976,7 +1006,11 @@
         node: node,
         src: img.getAttribute('src').replace(/([?&]w=)\d+/, '$1' + 1400),
         alt: img.getAttribute('alt') || '',
-        caption: (node.closest('.am-bride') && node.closest('.am-bride').querySelector('.am-bride__name')) ? node.closest('.am-bride').querySelector('.am-bride__name').textContent : ''
+        caption: (node.closest('.am-bride') && node.closest('.am-bride').querySelector('.am-bride__name')) ? node.closest('.am-bride').querySelector('.am-bride__name').textContent : '',
+        fabricPt: node.closest('.am-bride') ? node.closest('.am-bride').getAttribute('data-fabric-pt') : '',
+        customizationPt: node.closest('.am-bride') ? node.closest('.am-bride').getAttribute('data-customization-pt') : '',
+        fabricEn: node.closest('.am-bride') ? node.closest('.am-bride').getAttribute('data-fabric-en') : '',
+        customizationEn: node.closest('.am-bride') ? node.closest('.am-bride').getAttribute('data-customization-en') : ''
       };
     });
     var current = 0;
@@ -984,10 +1018,14 @@
     function show(i){
       current = (i + items.length) % items.length;
       var it = items[current];
+      lb.classList.toggle('has-details', Boolean(it.fabricPt));
       lens.style.display = 'none';
       lbImg.src = it.src;
       lbImg.alt = it.alt;
       cap.textContent = it.caption || '';
+      if(fabric) fabric.textContent = currentLang === 'en' ? it.fabricEn : it.fabricPt;
+      if(customization) customization.textContent = currentLang === 'en' ? it.customizationEn : it.customizationPt;
+      if(consultation) consultation.href = '#contato';
       if(counter) counter.textContent = String(current + 1).padStart(2, '0');
       if(total) total.textContent = String(items.length).padStart(2, '0');
     }
