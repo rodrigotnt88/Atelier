@@ -246,7 +246,40 @@
 .am-testi__head h2 { font-family: var(--display); font-size: clamp(26px, 3.2vw, 38px); margin: 0; }
 .am-testi__head h2 em { font-style: italic; }
 .am-testi__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
-.am-testi__card { background: var(--cream); padding: 40px 34px; border-radius: 8px; display: flex; flex-direction: column; gap: 20px; }
+.am-testi__card {
+  --card-mx: 50%; --card-my: 50%;
+  position: relative; isolation: isolate; overflow: hidden;
+  background: rgba(27,24,21,0.72); padding: 40px 34px; border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.12);
+  display: flex; flex-direction: column; gap: 20px;
+  box-shadow: 0 18px 42px rgba(27,24,21,0.16), 0 0 0 1px rgba(255,255,255,0.02) inset;
+  transition: border-color .35s ease, box-shadow .35s ease, transform .35s ease;
+}
+.am-testi__card::before {
+  content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background: radial-gradient(circle 220px at var(--card-mx) var(--card-my), rgba(239,223,206,0.22), transparent 68%);
+  opacity: 0; transition: opacity .35s ease;
+}
+.am-testi__card::after {
+  content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  border-radius: inherit; padding: 1px;
+  background: radial-gradient(circle 180px at var(--card-mx) var(--card-my), rgba(255,226,198,0.95), rgba(214,165,126,0.34) 35%, transparent 72%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor; mask-composite: exclude;
+  opacity: 0; transition: opacity .35s ease;
+}
+.am-testi__card:hover, .am-testi__card:focus-within {
+  border-color: rgba(255,226,198,0.42);
+  box-shadow: 0 22px 50px rgba(27,24,21,0.24), 0 0 28px rgba(214,165,126,0.16);
+  transform: translateY(-3px);
+}
+.am-testi__card:hover::before, .am-testi__card:hover::after,
+.am-testi__card:focus-within::before, .am-testi__card:focus-within::after { opacity: 1; }
+.am-testi__card > * { position: relative; z-index: 1; transition: text-shadow .35s ease, filter .35s ease; }
+.am-testi__card:hover > *, .am-testi__card:focus-within > * { text-shadow: 0 0 18px rgba(255,226,198,0.18); filter: brightness(1.08); }
+.am-testi__card .am-testi__stars svg { fill: #f1c59c; filter: drop-shadow(0 0 5px rgba(241,197,156,0.35)); }
+.am-testi__card .am-testi__quote { color: var(--cream); }
+.am-testi__card .am-testi__author { color: rgba(247,241,232,0.62); }
 .am-testi__stars { display: flex; gap: 3px; }
 .am-testi__stars svg { width: 16px; height: 16px; fill: var(--ink); }
 .am-testi__quote { font-family: var(--display); font-style: italic; font-size: 17px; line-height: 1.6; margin: 0; }
@@ -652,6 +685,17 @@
   'use strict';
 
   var LANG_DEFAULT = 'pt';
+  document.querySelectorAll('.am-testi__card').forEach(function(card){
+    card.addEventListener('pointermove', function(e){
+      var rect = card.getBoundingClientRect();
+      card.style.setProperty('--card-mx', ((e.clientX - rect.left) / rect.width * 100) + '%');
+      card.style.setProperty('--card-my', ((e.clientY - rect.top) / rect.height * 100) + '%');
+    });
+    card.addEventListener('pointerleave', function(){
+      card.style.setProperty('--card-mx', '50%');
+      card.style.setProperty('--card-my', '50%');
+    });
+  });
   var i18n = {
     en: {
       'nav.atelie': 'Atelier', 'nav.servicos': 'Services', 'nav.noivas': 'Brides',
