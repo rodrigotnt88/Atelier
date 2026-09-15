@@ -8,7 +8,7 @@
 <!-- ============================================================
      SEO & PARTILHA SOCIAL
      ============================================================ -->
-<meta name="description" content="Ateliê Ashley Medina em Seixal. Vestidos de noiva de alta-costura, feitos à medida — do primeiro esboço à última prova. Marque a sua consulta privada.">
+<meta name="description" content="Ateliê Ashley Medina em Seixal. Vestidos de noiva feitos à medida — do primeiro esboço à última prova. Marque a sua consulta privada.">
 <meta name="author" content="Ashley Medina">
 <meta name="theme-color" content="#1B1815">
 <link rel="canonical" href="https://ashleymedina.pt/">
@@ -16,7 +16,7 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Ashley Medina">
 <meta property="og:title" content="Ashley Medina — Vestidos de Noiva Sob Medida">
-<meta property="og:description" content="Alta-costura nupcial feita à medida no ateliê de Seixal.">
+<meta property="og:description" content="Vestidos de noiva feitos à medida no ateliê de Seixal.">
 <meta property="og:locale" content="pt_PT">
 
 <!-- ============================================================
@@ -168,11 +168,12 @@
 .am-menu-toggle.is-active span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
 
 .am-menu-overlay {
-  position: fixed; inset: 0; z-index: 90; background: var(--cream);
-  transform: translateY(-100%); transition: transform .55s cubic-bezier(.65,0,.35,1);
+  position: fixed; top: 0; right: 0; bottom: 0; z-index: 90; width: min(86vw, 390px);
+  background: var(--cream); border-left: 1px solid var(--line); box-shadow: -18px 0 48px rgba(27,24,21,.12);
+  transform: translateX(105%); transition: transform .45s cubic-bezier(.65,0,.35,1);
   display: flex; flex-direction: column; padding: 26px 6vw 40px; overflow-y: auto;
 }
-.am-menu-overlay.is-open { transform: translateY(0); }
+.am-menu-overlay.is-open { transform: translateX(0); }
 .am-menu-overlay__top { display: flex; align-items: center; justify-content: space-between; }
 .am-menu-overlay__mark { font-family: var(--display); font-size: 17px; letter-spacing: 0.06em; }
 .am-menu-overlay__list { list-style: none; padding: 0; margin: 60px 0 0; }
@@ -504,7 +505,7 @@
 <!-- HERO -->
 <section class="am-hero" id="topo">
   <div>
-    <p class="am-eyebrow am-hero__eyebrow am-reveal" data-i18n="hero.eyebrow">ATELIER em Seixal · Alta Costura Nupcial</p>
+    <p class="am-eyebrow am-hero__eyebrow am-reveal" data-i18n="hero.eyebrow">ATELIER em Seixal · Vestidos feitos à medida</p>
     <h1 class="am-hero__title am-reveal" data-delay="1" data-i18n-html="hero.title">Design nupcial <em>atemporal</em></h1>
     <p class="am-hero__text am-reveal" data-delay="2" data-i18n-html="hero.text">No Atelier Ashley Medina criamos vestidos de noiva feitos à medida, pensados para a sua personalidade, o seu corpo e a forma como sempre imaginou viver este momento.<br><br>Por isso, cada vestido nasce da escuta, do cuidado e da sensibilidade, compreendendo o seu estilo e tudo aquilo que deseja transmitir no dia mais especial da sua vida.</p>
     <div class="am-hero__actions am-reveal" data-delay="3">
@@ -541,7 +542,7 @@
 
 <!-- SERVIÇOS -->
 <section class="am-services" id="servicos">
-  <div class="am-services__head am-reveal"><h2 data-i18n="serv.head">SERVIÇOS DE ALTA COSTURA</h2></div>
+  <div class="am-services__head am-reveal"><h2 data-i18n="serv.head">SERVIÇOS PARA NOIVAS</h2></div>
   <div class="am-services__body">
     <div class="am-frame am-services__photo am-zoomable am-reveal" tabindex="0" role="button" aria-label="Ampliar imagem">
       <img src="images/servicos-vestido-2026.webp" alt="Vestido branco exposto no atelier diante de uma lareira" loading="lazy" decoding="async">
@@ -575,7 +576,7 @@
 
 <!-- INSPIRAÇÃO -->
 <section class="am-inspire">
-  <p class="am-reveal" data-i18n-html="insp.text">Nos inspiramos no romantismo clássico, na alta-costura vintage <em>e</em> no design contemporâneo <em>para</em> criar o seu vestido perfeito.</p>
+  <p class="am-reveal" data-i18n-html="insp.text">Nos inspiramos no romantismo clássico, no design vintage <em>e</em> no design contemporâneo <em>para</em> criar o seu vestido perfeito.</p>
   <a href="#noivas" class="am-btn am-reveal" data-delay="1" data-i18n="insp.cta">Explorar</a>
 </section>
 
@@ -742,7 +743,7 @@
 
 <!-- LIGHTBOX + LUPA -->
 <div class="am-lightbox" data-am-lightbox role="dialog" aria-modal="true" aria-label="Galeria de vestidos">
-  <div class="am-lightbox__brand" aria-hidden="true">Ashley Medina / Haute Couture</div>
+  <div class="am-lightbox__brand" aria-hidden="true">Ashley Medina / Bridal Atelier</div>
   <div class="am-lightbox__hint">
     <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/></svg>
     <span data-am-lb-hint>Passe o cursor para ampliar os detalhes</span>
@@ -789,7 +790,7 @@
     en: {
       'nav.atelie': 'Atelier', 'nav.servicos': 'Services', 'nav.noivas': 'Brides',
       'nav.depoimentos': 'Reviews', 'nav.contato': 'Contact',
-      'hero.eyebrow': 'ATELIER in Seixal · Bridal Haute Couture',
+      'hero.eyebrow': 'ATELIER in Seixal · Made-to-Measure Bridal',
       'hero.title': 'Timeless <em>bridal</em> design',
       'hero.text': 'At Atelier Ashley Medina we create made-to-measure wedding gowns, designed around your personality, your body and the way you have always imagined this moment.<br><br>Every gown is born from listening, care and sensitivity — understanding your style and everything you wish to express on the most special day of your life.',
       'hero.cta1': 'View Collection', 'hero.cta2': 'Book a Consultation',
@@ -797,14 +798,14 @@
       'appr.p1': 'We believe finding your wedding dress should be one of the most memorable experiences of your life. At Atelier Ashley Medina we offer a warm and welcoming process that celebrates the journey of becoming a bride.',
       'appr.p2': 'Everything begins with listening. We get to know the bride, her ideas, her style and what she imagines for her dress. From there, we accompany every stage of the creation — from choosing the fabrics and details to fittings and final adjustments.<br><br>Every decision is made together, with attention to what she truly wants, so the result is a unique dress, designed for her and made to measure.',
       'appr.cta': 'View Services',
-      'serv.head': 'HAUTE COUTURE SERVICES',
+      'serv.head': 'BRIDAL SERVICES',
       'serv.i1': 'Made-to-Measure Wedding Gowns', 'serv.i2': 'Bespoke Collection',
       'serv.i3': 'Bridal Styling Consultancy', 'serv.i4': 'Fittings & Final Touches',
       'serv.cta': 'Learn More',
       'found.eyebrow': 'Founder & Lead Designer', 'found.name': 'Hello, I am Ashley',
       'found.text': 'For me, creating wedding gowns goes far beyond sewing beautiful pieces — it is about crafting heirlooms that carry memories for a lifetime. In every stitch, every fabric choice and every adjustment, I think carefully to create a gown as unique as the bride who will wear it.',
       'found.cta': 'Learn More',
-      'insp.text': 'We draw inspiration from classic romanticism, vintage haute couture <em>and</em> contemporary design <em>to</em> create your perfect gown.',
+      'insp.text': 'We draw inspiration from classic romanticism, vintage design <em>and</em> contemporary detail <em>to</em> create your perfect gown.',
       'insp.cta': 'Explore',
       'brides.head': 'Featured <em>Brides</em>',
       'brides.hint': 'Click a photo and hover to inspect the details with the magnifier',
