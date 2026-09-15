@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Teste do menu lateral — Ashley Medina</title>
+  <style>
+    :root { --cream:#f7f1e8; --ink:#1b1815; --line:rgba(27,24,21,.18); --muted:#766f67; }
+    * { box-sizing:border-box; }
+    html,body { margin:0; min-height:100%; background:var(--cream); color:var(--ink); font-family:Georgia,serif; }
+    body { overflow-x:hidden; }
+    .page { min-height:100vh; padding:28px 24px 64px; }
+    header { display:flex; align-items:center; justify-content:space-between; gap:20px; }
+    .brand { font-size:20px; letter-spacing:.04em; }
+    .menu-toggle { width:42px; height:42px; border:1px solid var(--line); border-radius:50%; background:transparent; display:grid; place-items:center; cursor:pointer; position:relative; z-index:120; }
+    .menu-toggle span { position:absolute; width:18px; height:1px; background:var(--ink); transition:transform .3s ease,opacity .2s ease; }
+    .menu-toggle span:nth-child(1){ transform:translateY(-4px); }
+    .menu-toggle span:nth-child(3){ transform:translateY(4px); }
+    .menu-toggle.is-active span:nth-child(1){ transform:rotate(45deg); }
+    .menu-toggle.is-active span:nth-child(2){ opacity:0; }
+    .menu-toggle.is-active span:nth-child(3){ transform:rotate(-45deg); }
+    main { max-width:720px; padding-top:96px; }
+    .eyebrow { color:var(--muted); font:12px/1.4 Arial,sans-serif; letter-spacing:.14em; text-transform:uppercase; }
+    h1 { font-size:clamp(44px,11vw,88px); font-weight:400; line-height:.96; margin:20px 0; }
+    p { max-width:540px; font:18px/1.6 Arial,sans-serif; color:var(--muted); }
+    .hint { margin-top:42px; border-top:1px solid var(--line); padding-top:18px; font-size:13px; }
+    .menu-overlay { position:fixed; top:0; right:0; bottom:0; z-index:110; width:min(86vw,390px); background:var(--cream); border-left:1px solid var(--line); box-shadow:-18px 0 48px rgba(27,24,21,.12); transform:translateX(105%); transition:transform .45s cubic-bezier(.65,0,.35,1); padding:96px 32px 40px; display:flex; flex-direction:column; }
+    .menu-overlay.is-open { transform:translateX(0); }
+    .menu-overlay ul { list-style:none; margin:0; padding:0; }
+    .menu-overlay li { border-bottom:1px solid var(--line); }
+    .menu-overlay a { display:block; padding:22px 0; color:var(--ink); text-decoration:none; font-size:27px; }
+    .menu-overlay .contact { margin-top:auto; color:var(--muted); font:13px/1.5 Arial,sans-serif; }
+    .backdrop { position:fixed; inset:0; z-index:100; background:rgba(27,24,21,.08); opacity:0; pointer-events:none; transition:opacity .3s ease; }
+    .backdrop.is-visible { opacity:1; pointer-events:auto; }
+    @media (prefers-reduced-motion:reduce){ *,*::before,*::after{ transition:none!important; } }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div class="brand">Ashley Medina</div>
+      <button class="menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="test-menu">
+        <span></span><span></span><span></span>
+      </button>
+    </header>
+    <main>
+      <div class="eyebrow">Página de teste do menu</div>
+      <h1>Menu lateral<br><em>corrigido</em></h1>
+      <p>Toque no ícone no canto superior direito. O painel abre apenas na lateral direita; toque fora dele, no X ou em qualquer item para fechar.</p>
+      <p class="hint">Teste também abrir e fechar várias vezes, rolar a página e usar a tecla Escape.</p>
+    </main>
+  </div>
+  <div class="backdrop" data-backdrop aria-hidden="true"></div>
+  <aside class="menu-overlay" id="test-menu" aria-hidden="true">
+    <ul>
+      <li><a href="#atelier">Ateliê</a></li>
+      <li><a href="#servicos">Serviços</a></li>
+      <li><a href="#noivas">Noivas</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+    <div class="contact">Painel lateral de teste<br>Não ocupa a tela inteira</div>
+  </aside>
+  <script>
+    (function () {
+      var button = document.querySelector('.menu-toggle');
+      var panel = document.querySelector('.menu-overlay');
+      var backdrop = document.querySelector('[data-backdrop]');
+      function closeMenu () {
+        panel.classList.remove('is-open');
+        backdrop.classList.remove('is-visible');
+        button.classList.remove('is-active');
+        button.setAttribute('aria-expanded', 'false');
+        button.setAttribute('aria-label', 'Abrir menu');
+        panel.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+      }
+      function openMenu () {
+        panel.classList.add('is-open');
+        backdrop.classList.add('is-visible');
+        button.classList.add('is-active');
+        button.setAttribute('aria-expanded', 'true');
+        button.setAttribute('aria-label', 'Fechar menu');
+        panel.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      }
+      button.addEventListener('click', function () { panel.classList.contains('is-open') ? closeMenu() : openMenu(); });
+      backdrop.addEventListener('click', closeMenu);
+      panel.querySelectorAll('a').forEach(function (link) { link.addEventListener('click', closeMenu); });
+      document.addEventListener('keydown', function (event) { if (event.key === 'Escape') closeMenu(); });
+    }());
+  </script>
+</body>
+</html>
