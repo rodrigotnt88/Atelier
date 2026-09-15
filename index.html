@@ -275,8 +275,8 @@
 .am-embroidery__title { font-family: var(--display); font-size: clamp(28px, 3.4vw, 38px); font-weight: 400; margin: 0 0 22px; }
 .am-embroidery__title em { font-style: italic; }
 .am-embroidery__text { max-width: 42ch; color: var(--charcoal); font-size: 13.5px; line-height: 1.85; font-weight: 300; margin: 0 0 28px; }
-.am-embroidery__row { display: flex; gap: 18px; overflow-x: auto; padding: 4px 0 14px; scroll-snap-type: x mandatory; scrollbar-width: thin; scrollbar-color: var(--charcoal) transparent; overscroll-behavior-x: contain; }
-.am-embroidery__card { flex: 0 0 calc(50% - 9px); scroll-snap-align: start; }
+.am-embroidery__row { display: flex; gap: 18px; overflow-x: auto; padding: 4px 0 14px; scroll-snap-type: x mandatory; scroll-padding-inline: 0; scrollbar-width: thin; scrollbar-color: var(--charcoal) transparent; overscroll-behavior-x: contain; }
+.am-embroidery__card { flex: 0 0 calc(50% - 9px); scroll-snap-align: start; scroll-snap-stop: always; }
 .am-embroidery__card .am-frame { aspect-ratio: 4/5; }
 .am-embroidery__card img { object-fit: cover; }
 .am-embroidery__label { margin: 10px 0 0; font-family: var(--display); font-style: italic; font-size: 15px; }
@@ -984,7 +984,16 @@
     button.addEventListener('click', function(){
       var target = document.querySelector('[data-carousel="' + button.getAttribute('data-carousel-target') + '"]');
       if(!target) return;
-      var amount = Math.max(target.clientWidth * 0.72, 260);
+      var amount;
+      if(button.getAttribute('data-carousel-target') === 'embroidery'){
+        var firstCard = target.querySelector('.am-embroidery__card');
+        if(!firstCard) return;
+        var styles = window.getComputedStyle(target);
+        var gap = parseFloat(styles.columnGap || styles.gap || '0') || 0;
+        amount = firstCard.getBoundingClientRect().width + gap;
+      } else {
+        amount = Math.max(target.clientWidth * 0.72, 260);
+      }
       target.scrollBy({ left: amount * Number(button.getAttribute('data-carousel-dir')), behavior: 'smooth' });
     });
   });
