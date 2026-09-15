@@ -264,6 +264,23 @@
 .am-brides__hint { font-size: 12px; color: var(--charcoal); font-weight: 300; margin: 0 0 34px; display: inline-flex; align-items: center; gap: 8px; }
 .am-brides__hint svg { width: 15px; height: 15px; stroke: var(--charcoal); fill: none; stroke-width: 2; }
 .am-brides__row { display: flex; gap: 22px; overflow-x: auto; padding: 4px 0 16px; scroll-snap-type: x mandatory; scrollbar-width: thin; scrollbar-color: var(--charcoal) transparent; }
+.am-carousel-controls { display: flex; justify-content: flex-end; gap: 8px; margin: 0 0 14px; }
+.am-carousel-btn { width: 42px; height: 42px; border: 1px solid var(--line); border-radius: 50%; background: transparent; color: var(--ink); display: inline-grid; place-items: center; cursor: pointer; transition: background .25s ease, color .25s ease, transform .25s ease; }
+.am-carousel-btn:hover, .am-carousel-btn:focus-visible { background: var(--ink); color: var(--cream); transform: translateY(-2px); outline: none; }
+.am-carousel-btn svg { width: 17px; height: 17px; fill: none; stroke: currentColor; stroke-width: 1.5; }
+.am-embroidery { display: grid; grid-template-columns: .8fr 1.2fr; gap: 70px; align-items: center; padding: 110px 6vw; background: var(--white); }
+.am-embroidery__title { font-family: var(--display); font-size: clamp(30px, 4vw, 48px); font-weight: 400; margin: 0 0 22px; }
+.am-embroidery__title em { font-style: italic; }
+.am-embroidery__text { max-width: 42ch; color: var(--charcoal); font-size: 13.5px; line-height: 1.85; font-weight: 300; margin: 0 0 28px; }
+.am-embroidery__viewport { min-width: 0; }
+.am-embroidery__row { display: flex; gap: 18px; overflow-x: auto; padding: 4px 0 14px; scroll-snap-type: x mandatory; scrollbar-width: thin; scrollbar-color: var(--charcoal) transparent; overscroll-behavior-x: contain; }
+.am-embroidery__card { flex: 0 0 calc(50% - 9px); scroll-snap-align: start; }
+.am-embroidery__card .am-frame { aspect-ratio: 4/5; }
+.am-embroidery__card img { object-fit: cover; }
+.am-embroidery__label { margin: 10px 0 0; font-family: var(--display); font-style: italic; font-size: 15px; }
+@media (max-width: 900px) { .am-embroidery { grid-template-columns: 1fr; gap: 38px; padding: 80px 6vw; } }
+@media (max-width: 560px) { .am-embroidery__card { flex-basis: 78%; } .am-carousel-controls { justify-content: flex-start; } }
+
 .am-bride { flex: 0 0 auto; width: 240px; scroll-snap-align: start; }
 .am-bride__photo { aspect-ratio: 3/4; margin-bottom: 14px; border-radius: 2px; box-shadow: 0 12px 28px rgba(27,24,21,.08); transition: transform .5s cubic-bezier(.2,.7,.2,1), box-shadow .5s ease; }
 .am-bride:hover .am-bride__photo, .am-bride:focus-within .am-bride__photo { transform: translateY(-8px); box-shadow: 0 22px 38px rgba(27,24,21,.16); }
@@ -540,6 +557,28 @@
   </div>
 </section>
 
+<!-- BORDADOS À MÃO -->
+<section class="am-embroidery" id="bordados">
+  <div>
+    <p class="am-eyebrow am-reveal">DETALHES QUE HOMENAGEIAM</p>
+    <h2 class="am-embroidery__title am-reveal" data-delay="1"><em>Bordados</em> à Mão</h2>
+    <p class="am-embroidery__text am-reveal" data-delay="2">Uma secção dedicada a homenagens personalizadas: bordados no véu, fita para o buquê, almofada das alianças, nome do noivo, data do casamento, nomes dos pais e avós — ou qualquer elemento especial que queira levar consigo para o grande dia. <strong>Texto final a confirmar com a Ashley.</strong></p>
+    <a href="#contato" class="am-btn am-reveal" data-delay="3">Conversar sobre o seu bordado</a>
+  </div>
+  <div class="am-embroidery__viewport am-reveal" data-delay="1">
+    <div class="am-carousel-controls" aria-label="Navegação dos bordados à mão">
+      <button class="am-carousel-btn" type="button" data-carousel-target="embroidery" data-carousel-dir="-1" aria-label="Ver bordados anteriores"><svg viewBox="0 0 24 24"><path d="M15 5 8 12l7 7"/></svg></button>
+      <button class="am-carousel-btn" type="button" data-carousel-target="embroidery" data-carousel-dir="1" aria-label="Ver próximos bordados"><svg viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"/></svg></button>
+    </div>
+    <div class="am-embroidery__row" data-carousel="embroidery" aria-label="Galeria de bordados à mão">
+      <div class="am-embroidery__card"><div class="am-frame"><img src="images/abordagem-tecido-2026.webp" alt="Placeholder Bordados 1 — detalhe têxtil" loading="lazy" decoding="async"></div><p class="am-embroidery__label">Bordados 1</p></div>
+      <div class="am-embroidery__card"><div class="am-frame"><img src="images/servicos-vestido-2026.webp" alt="Placeholder Bordados 2 — detalhe do vestido" loading="lazy" decoding="async"></div><p class="am-embroidery__label">Bordados 2</p></div>
+      <div class="am-embroidery__card"><div class="am-frame"><img src="images/abordagem-noiva-2026.webp" alt="Placeholder Bordados 3 — detalhe da noiva" loading="lazy" decoding="async"></div><p class="am-embroidery__label">Bordados 3</p></div>
+      <div class="am-embroidery__card"><div class="am-frame"><img src="images/abordagem-ponte.jpg" alt="Placeholder Bordados 4 — referência visual do atelier" loading="lazy" decoding="async"></div><p class="am-embroidery__label">Bordados 4</p></div>
+    </div>
+  </div>
+</section>
+
 <!-- SERVIÇOS -->
 <section class="am-services" id="servicos">
   <div class="am-services__head am-reveal"><h2 data-i18n="serv.head">SERVIÇOS PARA NOIVAS</h2></div>
@@ -591,7 +630,11 @@
     <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
     <span data-i18n="brides.hint">Clique numa foto e passe o cursor para ver os detalhes com a lupa</span>
   </p>
-  <div class="am-brides__row">
+  <div class="am-carousel-controls" aria-label="Navegação das noivas em destaque">
+    <button class="am-carousel-btn" type="button" data-carousel-target="brides" data-carousel-dir="-1" aria-label="Ver noivas anteriores"><svg viewBox="0 0 24 24"><path d="M15 5 8 12l7 7"/></svg></button>
+    <button class="am-carousel-btn" type="button" data-carousel-target="brides" data-carousel-dir="1" aria-label="Ver próximas noivas"><svg viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"/></svg></button>
+  </div>
+  <div class="am-brides__row" data-carousel="brides">
     <div class="am-bride am-reveal">
       <div class="am-frame am-bride__photo am-zoomable" data-fabric-pt="Seda mikado" data-customization-pt="Mangas removíveis · decote personalizado · cauda ajustável" data-fabric-en="Silk mikado" data-customization-en="Detachable sleeves · custom neckline · adjustable train" tabindex="0" role="button" aria-label="Ampliar vestido de Beatriz"><img src="https://images.unsplash.com/photo-1579583764988-3e08c6132d2a?crop=entropy&cs=srgb&fm=jpg&q=80&w=500&ixlib=rb-4.1.0" alt="Noiva Beatriz vestindo Ateliê Ashley Medina" loading="lazy" decoding="async"><span class="am-zoom-badge"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></span></div>
       <p class="am-bride__name">Beatriz</p>
@@ -682,7 +725,7 @@
         <input id="am-email" name="email" type="email" maxlength="120" autocomplete="email" placeholder=" " data-i18n-ph="form.ph_email">
       </div>
       <div class="am-field">
-        <label for="am-date" data-i18n="form.date">Data pretendida</label>
+        <label for="am-date" data-i18n="form.date">Data do Casamento</label>
         <input id="am-date" name="date" type="date">
       </div>
     </div>
@@ -822,7 +865,7 @@
       'expect.text': 'Choosing your wedding gown is an experience guided by timeless beauty, soft fabrics and the elegance of every piece. Each gown tells a story — a partnership between you and our atelier. We care for every detail so you live this moment with ease, from the first sketch to the last stitch.',
       'book.eyebrow': 'Book Your Consultation', 'book.title': 'Reserve your time at the atelier',
       'book.text': 'We would love to welcome you to the atelier for a private consultation. Fill in the form and we will send your message straight to WhatsApp to confirm the best date.',
-      'form.name': 'Name', 'form.phone': 'Phone', 'form.email': 'Email', 'form.date': 'Preferred date', 'form.msg': 'Message',
+      'form.name': 'Name', 'form.phone': 'Phone', 'form.email': 'Email', 'form.date': 'Wedding date', 'form.msg': 'Message',
       'form.ph_name': 'Your full name', 'form.ph_phone': 'Optional', 'form.ph_email': 'you@email.com', 'form.ph_msg': 'Tell us about your dream gown…',
       'form.submit': 'Send via WhatsApp',
       'form.note': 'Your data is not stored on this site — it is sent only to our WhatsApp chat.',
@@ -936,6 +979,16 @@
     });
   });
 
+  /* --- Setas dos carousels horizontais --- */
+  document.querySelectorAll('[data-carousel-target]').forEach(function(button){
+    button.addEventListener('click', function(){
+      var target = document.querySelector('[data-carousel="' + button.getAttribute('data-carousel-target') + '"]');
+      if(!target) return;
+      var amount = Math.max(target.clientWidth * 0.72, 260);
+      target.scrollBy({ left: amount * Number(button.getAttribute('data-carousel-dir')), behavior: 'smooth' });
+    });
+  });
+
   /* ============================================================
      FORMULÁRIO -> WhatsApp (sem armazenar dados)
      ============================================================ */
@@ -966,14 +1019,14 @@
         'Name: ' + name,
         phone ? 'Phone: ' + phone : '',
         email ? 'Email: ' + email : '',
-        date ? 'Preferred date: ' + date : '',
+        date ? 'Wedding date: ' + date : '',
         message ? 'Message: ' + message : ''
       ] : [
         'Olá Ashley Medina! Gostaria de agendar uma consulta.',
         'Nome: ' + name,
         phone ? 'Telefone: ' + phone : '',
         email ? 'Email: ' + email : '',
-        date ? 'Data pretendida: ' + date : '',
+        date ? 'Data do Casamento: ' + date : '',
         message ? 'Mensagem: ' + message : ''
       ];
       var text = lines.filter(Boolean).join('\n');
