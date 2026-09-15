@@ -264,22 +264,26 @@
 .am-brides__hint { font-size: 12px; color: var(--charcoal); font-weight: 300; margin: 0 0 34px; display: inline-flex; align-items: center; gap: 8px; }
 .am-brides__hint svg { width: 15px; height: 15px; stroke: var(--charcoal); fill: none; stroke-width: 2; }
 .am-brides__row { display: flex; gap: 22px; overflow-x: auto; padding: 4px 0 16px; scroll-snap-type: x mandatory; scrollbar-width: thin; scrollbar-color: var(--charcoal) transparent; }
-.am-carousel-controls { display: flex; justify-content: flex-end; gap: 8px; margin: 0 0 14px; }
-.am-carousel-btn { width: 42px; height: 42px; border: 1px solid var(--line); border-radius: 50%; background: transparent; color: var(--ink); display: inline-grid; place-items: center; cursor: pointer; transition: background .25s ease, color .25s ease, transform .25s ease; }
-.am-carousel-btn:hover, .am-carousel-btn:focus-visible { background: var(--ink); color: var(--cream); transform: translateY(-2px); outline: none; }
+.am-carousel-shell, .am-embroidery__viewport { position: relative; min-width: 0; }
+.am-carousel-controls { position: absolute; top: calc(50% + 21px); left: 0; right: 0; z-index: 4; display: flex; justify-content: space-between; align-items: center; margin: 0; padding: 0; pointer-events: none; }
+.am-carousel-btn { width: 42px; height: 42px; border: 1px solid var(--line); border-radius: 50%; background: var(--cream); color: var(--ink); display: inline-grid; place-items: center; cursor: pointer; pointer-events: auto; box-shadow: 0 8px 22px rgba(27,24,21,.14); transition: background .25s ease, color .25s ease, transform .25s ease; }
+.am-carousel-btn:first-child { transform: translateX(-21px); }
+.am-carousel-btn:last-child { transform: translateX(21px); }
+.am-carousel-btn:hover, .am-carousel-btn:focus-visible { background: var(--ink); color: var(--cream); outline: none; }
+.am-carousel-btn:first-child:hover, .am-carousel-btn:first-child:focus-visible { transform: translateX(-21px) scale(1.06); }
+.am-carousel-btn:last-child:hover, .am-carousel-btn:last-child:focus-visible { transform: translateX(21px) scale(1.06); }
 .am-carousel-btn svg { width: 17px; height: 17px; fill: none; stroke: currentColor; stroke-width: 1.5; }
 .am-embroidery { display: grid; grid-template-columns: .8fr 1.2fr; gap: 70px; align-items: center; padding: 110px 6vw; background: var(--white); }
 .am-embroidery__title { font-family: var(--display); font-size: clamp(30px, 4vw, 48px); font-weight: 400; margin: 0 0 22px; }
 .am-embroidery__title em { font-style: italic; }
 .am-embroidery__text { max-width: 42ch; color: var(--charcoal); font-size: 13.5px; line-height: 1.85; font-weight: 300; margin: 0 0 28px; }
-.am-embroidery__viewport { min-width: 0; }
 .am-embroidery__row { display: flex; gap: 18px; overflow-x: auto; padding: 4px 0 14px; scroll-snap-type: x mandatory; scrollbar-width: thin; scrollbar-color: var(--charcoal) transparent; overscroll-behavior-x: contain; }
 .am-embroidery__card { flex: 0 0 calc(50% - 9px); scroll-snap-align: start; }
 .am-embroidery__card .am-frame { aspect-ratio: 4/5; }
 .am-embroidery__card img { object-fit: cover; }
 .am-embroidery__label { margin: 10px 0 0; font-family: var(--display); font-style: italic; font-size: 15px; }
 @media (max-width: 900px) { .am-embroidery { grid-template-columns: 1fr; gap: 38px; padding: 80px 6vw; } }
-@media (max-width: 560px) { .am-embroidery__card { flex-basis: 78%; } .am-carousel-controls { justify-content: flex-start; } }
+@media (max-width: 560px) { .am-embroidery__card { flex-basis: 78%; } .am-carousel-btn { width: 38px; height: 38px; } }
 
 .am-bride { flex: 0 0 auto; width: 240px; scroll-snap-align: start; }
 .am-bride__photo { aspect-ratio: 3/4; margin-bottom: 14px; border-radius: 2px; box-shadow: 0 12px 28px rgba(27,24,21,.08); transition: transform .5s cubic-bezier(.2,.7,.2,1), box-shadow .5s ease; }
@@ -630,11 +634,12 @@
     <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
     <span data-i18n="brides.hint">Clique numa foto e passe o cursor para ver os detalhes com a lupa</span>
   </p>
-  <div class="am-carousel-controls" aria-label="Navegação das noivas em destaque">
-    <button class="am-carousel-btn" type="button" data-carousel-target="brides" data-carousel-dir="-1" aria-label="Ver noivas anteriores"><svg viewBox="0 0 24 24"><path d="M15 5 8 12l7 7"/></svg></button>
-    <button class="am-carousel-btn" type="button" data-carousel-target="brides" data-carousel-dir="1" aria-label="Ver próximas noivas"><svg viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"/></svg></button>
-  </div>
-  <div class="am-brides__row" data-carousel="brides">
+  <div class="am-carousel-shell">
+    <div class="am-carousel-controls" aria-label="Navegação das noivas em destaque">
+      <button class="am-carousel-btn" type="button" data-carousel-target="brides" data-carousel-dir="-1" aria-label="Ver noivas anteriores"><svg viewBox="0 0 24 24"><path d="M15 5 8 12l7 7"/></svg></button>
+      <button class="am-carousel-btn" type="button" data-carousel-target="brides" data-carousel-dir="1" aria-label="Ver próximas noivas"><svg viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"/></svg></button>
+    </div>
+    <div class="am-brides__row" data-carousel="brides">
     <div class="am-bride am-reveal">
       <div class="am-frame am-bride__photo am-zoomable" data-fabric-pt="Seda mikado" data-customization-pt="Mangas removíveis · decote personalizado · cauda ajustável" data-fabric-en="Silk mikado" data-customization-en="Detachable sleeves · custom neckline · adjustable train" tabindex="0" role="button" aria-label="Ampliar vestido de Beatriz"><img src="https://images.unsplash.com/photo-1579583764988-3e08c6132d2a?crop=entropy&cs=srgb&fm=jpg&q=80&w=500&ixlib=rb-4.1.0" alt="Noiva Beatriz vestindo Ateliê Ashley Medina" loading="lazy" decoding="async"><span class="am-zoom-badge"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></span></div>
       <p class="am-bride__name">Beatriz</p>
@@ -658,6 +663,7 @@
     <div class="am-bride am-reveal" data-delay="1">
       <div class="am-frame am-bride__photo am-zoomable" data-fabric-pt="Cetim duchesse" data-customization-pt="Pérolas aplicadas à mão · corpete esculpido · cauda alongada" data-fabric-en="Duchesse satin" data-customization-en="Hand-applied pearls · sculpted bodice · extended train" tabindex="0" role="button" aria-label="Ampliar vestido de Matilde"><img src="https://images.unsplash.com/photo-1600973450758-826872a3aaca?crop=entropy&cs=srgb&fm=jpg&q=80&w=500&ixlib=rb-4.1.0" alt="Noiva Matilde vestindo Ateliê Ashley Medina" loading="lazy" decoding="async"><span class="am-zoom-badge"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></span></div>
       <p class="am-bride__name">Matilde</p>
+    </div>
     </div>
   </div>
 </section>
@@ -917,7 +923,7 @@
   if(toggle && overlay){
     var openMenu = function(){ overlay.classList.add('is-open'); toggle.classList.add('is-active'); toggle.setAttribute('aria-expanded','true'); document.body.style.overflow='hidden'; };
     var closeMenu = function(){ overlay.classList.remove('is-open'); toggle.classList.remove('is-active'); toggle.setAttribute('aria-expanded','false'); document.body.style.overflow=''; };
-    toggle.addEventListener('click', function(){ overlay.classList.contains('is-open') ? closeMenu() : openMenu(); });
+    toggle.addEventListener('click', function(e){ e.preventDefault(); e.stopPropagation(); if(overlay.classList.contains('is-open')) closeMenu(); else openMenu(); });
     document.querySelectorAll('[data-am-menu-link]').forEach(function(link){ link.addEventListener('click', closeMenu); });
     document.addEventListener('keydown', function(e){ if(e.key === 'Escape'){ closeMenu(); } });
   }
