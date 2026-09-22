@@ -175,6 +175,13 @@
 }
 .am-menu-overlay.is-open { transform: translateX(0); }
 .am-menu-overlay__top { display: flex; align-items: center; justify-content: space-between; }
+.am-menu-overlay__close {
+  display: grid; place-items: center; width: 36px; height: 36px; margin: -7px -5px 0 0;
+  padding: 0; border: 1px solid var(--line); border-radius: 50%; background: transparent;
+  color: var(--ink); cursor: pointer; transition: background .25s ease, color .25s ease, border-color .25s ease;
+}
+.am-menu-overlay__close:hover, .am-menu-overlay__close:focus-visible { background: var(--ink); color: var(--cream); border-color: var(--ink); outline: none; }
+.am-menu-overlay__close svg { width: 18px; height: 18px; stroke: currentColor; stroke-width: 1.5; fill: none; }
 .am-menu-overlay__mark { font-family: var(--display); font-size: 16px; letter-spacing: 0.06em; }
 .am-menu-overlay__list { list-style: none; padding: 0; margin: 44px 0 0; }
 .am-menu-overlay__list li { border-bottom: 1px solid var(--line); }
@@ -508,6 +515,9 @@
 <div class="am-menu-overlay" data-am-menu-overlay>
   <div class="am-menu-overlay__top">
     <div class="am-menu-overlay__mark">Ashley Medina</div>
+    <button class="am-menu-overlay__close" type="button" data-am-menu-close aria-label="Fechar menu">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>
+    </button>
   </div>
   <ul class="am-menu-overlay__list">
     <li><a href="#abordagem" data-am-menu-link data-i18n="nav.atelie">Ateliê</a></li>
@@ -914,10 +924,12 @@
   /* --- Menu mobile --- */
   var toggle = document.querySelector('[data-am-menu-toggle]');
   var overlay = document.querySelector('[data-am-menu-overlay]');
+  var menuClose = document.querySelector('[data-am-menu-close]');
   if(toggle && overlay){
     var openMenu = function(){ overlay.classList.add('is-open'); toggle.classList.add('is-active'); toggle.setAttribute('aria-expanded','true'); document.body.style.overflow='hidden'; };
     var closeMenu = function(){ overlay.classList.remove('is-open'); toggle.classList.remove('is-active'); toggle.setAttribute('aria-expanded','false'); document.body.style.overflow=''; };
     toggle.addEventListener('click', function(e){ e.preventDefault(); e.stopPropagation(); if(overlay.classList.contains('is-open')) closeMenu(); else openMenu(); });
+    if(menuClose) menuClose.addEventListener('click', closeMenu);
     document.querySelectorAll('[data-am-menu-link]').forEach(function(link){ link.addEventListener('click', closeMenu); });
     overlay.addEventListener('click', function(e){
       if(!e.target.closest('a, button')) closeMenu();
