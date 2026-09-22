@@ -574,10 +574,9 @@
       <button class="am-carousel-btn" type="button" data-carousel-target="embroidery" data-carousel-dir="1" aria-label="Ver próximos bordados"><svg viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"/></svg></button>
     </div>
     <div class="am-embroidery__row" data-carousel="embroidery" aria-label="Galeria de bordados à mão">
-      <div class="am-embroidery__card"><div class="am-frame"><img src="images/bordados-1.png" alt="Fita bordada personalizada no buquê — Bordados 1" loading="lazy" decoding="async"></div><p class="am-embroidery__label">Bordados 1</p></div>
-      <div class="am-embroidery__card"><div class="am-frame"><img src="images/Bordados3.png" alt="Bordado floral artesanal em faixa de tecido — Bordados 2" loading="lazy" decoding="async"></div><p class="am-embroidery__label">Bordados 2</p></div>
-      <div class="am-embroidery__card"><div class="am-frame"><img src="images/bordados-2.png" alt="Fitas bordadas com flores e iniciais — Bordados 3" loading="lazy" decoding="async"></div><p class="am-embroidery__label">Bordados 3</p></div>
-      <div class="am-embroidery__card"><div class="am-frame"><img src="images/bordados-3.jpeg" alt="Fita personalizada com nome e data — Bordados 4" loading="lazy" decoding="async"></div><p class="am-embroidery__label">Bordados 4</p></div>
+      <div class="am-embroidery__card"><div class="am-frame am-zoomable" data-fabric-pt="Fita de cetim e fios de algodão" data-customization-pt="Bordado floral personalizado · acabamento manual" data-fabric-en="Satin ribbon and cotton threads" data-customization-en="Personalized floral embroidery · hand-finished details" tabindex="0" role="button" aria-label="Ampliar Bordados 1"><img src="images/bordados-1.png" alt="Fita bordada personalizada no buquê — Bordados 1" loading="lazy" decoding="async"><span class="am-zoom-badge"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></span></div><p class="am-embroidery__label">Bordados 1</p></div>
+      <div class="am-embroidery__card"><div class="am-frame am-zoomable" data-fabric-pt="Algodão e fios metálicos" data-customization-pt="Bordado floral artesanal · acabamento manual" data-fabric-en="Cotton and metallic threads" data-customization-en="Handcrafted floral embroidery · hand-finished details" tabindex="0" role="button" aria-label="Ampliar Bordados 2"><img src="images/Bordados3.png" alt="Bordado floral artesanal em faixa de tecido — Bordados 2" loading="lazy" decoding="async"><span class="am-zoom-badge"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></span></div><p class="am-embroidery__label">Bordados 2</p></div>
+      <div class="am-embroidery__card"><div class="am-frame am-zoomable" data-fabric-pt="Fita de cetim e linha de bordado" data-customization-pt="Flores e iniciais bordadas · composição personalizada" data-fabric-en="Satin ribbon and embroidery thread" data-customization-en="Embroidered flowers and initials · personalized composition" tabindex="0" role="button" aria-label="Ampliar Bordados 3"><img src="images/bordados-2.png" alt="Fitas bordadas com flores e iniciais — Bordados 3" loading="lazy" decoding="async"><span class="am-zoom-badge"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></span></div><p class="am-embroidery__label">Bordados 3</p></div>
     </div>
   </div>
 </section>
@@ -1072,15 +1071,18 @@
 
     var items = Array.prototype.map.call(document.querySelectorAll('.am-zoomable'), function(node){
       var img = node.querySelector('img');
+      var bride = node.closest('.am-bride');
+      var embroidery = node.closest('.am-embroidery__card');
+      var label = embroidery ? embroidery.querySelector('.am-embroidery__label') : null;
       return {
         node: node,
         src: img.getAttribute('src').replace(/([?&]w=)\d+/, '$1' + 1400),
         alt: img.getAttribute('alt') || '',
-        caption: (node.closest('.am-bride') && node.closest('.am-bride').querySelector('.am-bride__name')) ? node.closest('.am-bride').querySelector('.am-bride__name').textContent : '',
-        fabricPt: node.closest('.am-bride') ? node.closest('.am-bride').getAttribute('data-fabric-pt') : '',
-        customizationPt: node.closest('.am-bride') ? node.closest('.am-bride').getAttribute('data-customization-pt') : '',
-        fabricEn: node.closest('.am-bride') ? node.closest('.am-bride').getAttribute('data-fabric-en') : '',
-        customizationEn: node.closest('.am-bride') ? node.closest('.am-bride').getAttribute('data-customization-en') : ''
+        caption: bride && bride.querySelector('.am-bride__name') ? bride.querySelector('.am-bride__name').textContent : (label ? label.textContent : ''),
+        fabricPt: bride ? bride.getAttribute('data-fabric-pt') : (node.getAttribute('data-fabric-pt') || ''),
+        customizationPt: bride ? bride.getAttribute('data-customization-pt') : (node.getAttribute('data-customization-pt') || ''),
+        fabricEn: bride ? bride.getAttribute('data-fabric-en') : (node.getAttribute('data-fabric-en') || ''),
+        customizationEn: bride ? bride.getAttribute('data-customization-en') : (node.getAttribute('data-customization-en') || '')
       };
     });
     var current = 0;
