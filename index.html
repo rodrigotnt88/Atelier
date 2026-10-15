@@ -410,7 +410,7 @@
 .am-consent__actions { display: flex; gap: 8px; flex: 0 0 auto; }
 .am-consent__button { border: 1px solid rgba(247,241,232,.7); border-radius: 999px; padding: 10px 15px; background: transparent; color: var(--cream); font: 10px var(--body); letter-spacing: .1em; text-transform: uppercase; cursor: pointer; }
 .am-consent__button--accept { background: var(--cream); color: var(--ink); border-color: var(--cream); }
-@media (max-width: 640px) { .am-consent { left: 12px; right: 12px; bottom: 12px; display: block; } .am-consent__actions { margin-top: 14px; } }
+@media (max-width: 640px) { .am-consent { left: 12px; right: 12px; bottom: 12px; } .am-consent.is-visible { display: block; } .am-consent__actions { margin-top: 14px; } }
 
 .am-footer { background: var(--blush); padding: 60px 6vw 30px; }
 .am-footer__top { display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 40px; padding-bottom: 40px; margin-bottom: 26px; border-bottom: 1px solid var(--line); }
