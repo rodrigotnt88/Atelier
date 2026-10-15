@@ -24,6 +24,54 @@
 <meta property="og:title" content="Ashley Medina — Vestidos de Noiva Sob Medida">
 <meta property="og:description" content="Vestidos de noiva feitos à medida no ateliê de Seixal.">
 <meta property="og:locale" content="pt_PT">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": ["ClothingStore", "LocalBusiness"],
+        "@id": "https://www.atelierashleymedina.com/#atelier",
+        "name": "Atelier Ashley Medina",
+        "description": "Atelier em Seixal especializado em vestidos de noiva feitos à medida, bordados e acompanhamento personalizado.",
+        "url": "https://www.atelierashleymedina.com/",
+        "image": "https://www.atelierashleymedina.com/images/hero-noiva-2026.webp",
+        "telephone": "+351933459640",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Rua Rodrigues Lapa, 14, 4.º Esq.",
+          "postalCode": "2845-132",
+          "addressLocality": "Seixal",
+          "addressCountry": "PT"
+        },
+        "openingHoursSpecification": [{
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+          "opens": "09:00",
+          "closes": "18:00"
+        }],
+        "sameAs": ["https://instagram.com/costura.medina"],
+        "areaServed": ["Seixal", "Lisboa", "Setúbal"]
+      },
+      {
+        "@type": "Service",
+        "@id": "https://www.atelierashleymedina.com/#vestidos-sob-medida",
+        "name": "Vestidos de noiva feitos à medida",
+        "provider": {"@id": "https://www.atelierashleymedina.com/#atelier"},
+        "areaServed": ["Seixal", "Lisboa", "Setúbal"],
+        "serviceType": "Criação e acompanhamento de vestidos de noiva sob medida"
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {"@type": "Question", "name": "Onde fica o Atelier Ashley Medina?", "acceptedAnswer": {"@type": "Answer", "text": "O atelier fica na Rua Rodrigues Lapa, 14, 4.º Esq., 2845-132 Seixal. As visitas são feitas por marcação."}},
+          {"@type": "Question", "name": "Como posso marcar uma consulta privada?", "acceptedAnswer": {"@type": "Answer", "text": "Pode preencher o formulário de consulta no site. A mensagem é preparada e enviada diretamente para o WhatsApp do atelier."}},
+          {"@type": "Question", "name": "O atelier cria vestidos de noiva feitos à medida?", "acceptedAnswer": {"@type": "Answer", "text": "Sim. Cada vestido é pensado em conjunto com a noiva, desde a silhueta e os tecidos até às provas e aos ajustes finais."}},
+          {"@type": "Question", "name": "Quando devo iniciar o processo?", "acceptedAnswer": {"@type": "Answer", "text": "O melhor momento é definido na primeira conversa, tendo em conta a data do casamento, o modelo e o nível de personalização desejado."}}
+        ]
+      }
+    ]
+  }
+  </script>
 
 <!-- ============================================================
      CIBERSEGURANÇA (protecções ao nível do documento)
@@ -38,6 +86,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://images.unsplash.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="image" href="images/hero-noiva-2026.webp" fetchpriority="high">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 
@@ -523,6 +572,23 @@
 .am-testi__card:hover, .am-testi__card:focus-within { border-color: rgba(247,241,232,.72); box-shadow: none; transform: translateY(-2px); }
 .am-testi__card:hover > *, .am-testi__card:focus-within > * { text-shadow: none; filter: none; }
 .am-testi__card .am-testi__stars svg { filter: none; }
+
+/* CONSULTA PRIVADA + FAQ */
+.am-form select { width: 100%; font-family: var(--body); font-size: 14px; color: var(--ink); padding: 12px 14px; border: 1px solid var(--line); border-radius: 2px; background: var(--cream); appearance: none; background-image: linear-gradient(45deg, transparent 50%, var(--charcoal) 50%), linear-gradient(135deg, var(--charcoal) 50%, transparent 50%); background-position: calc(100% - 17px) 17px, calc(100% - 12px) 17px; background-size: 5px 5px, 5px 5px; background-repeat: no-repeat; }
+.am-field select:focus { outline: none; border-color: var(--ink); box-shadow: 0 0 0 3px rgba(27,24,21,0.08); }
+.am-honeypot { position: absolute !important; left: -10000px !important; width: 1px !important; height: 1px !important; opacity: 0 !important; pointer-events: none !important; }
+.am-faq { background: var(--cream); padding: 95px 6vw 105px; display: grid; grid-template-columns: .72fr 1fr; gap: 70px; align-items: start; }
+.am-faq__head h2 { font-family: var(--display); font-size: clamp(28px, 3.2vw, 38px); font-weight: 400; margin: 0 0 18px; }
+.am-faq__head h2 em { font-style: italic; }
+.am-faq__head p { max-width: 32ch; color: var(--charcoal); font-size: 13.5px; line-height: 1.8; font-weight: 300; margin: 0; }
+.am-faq__list { border-top: 1px solid var(--line); }
+.am-faq details { border-bottom: 1px solid var(--line); }
+.am-faq summary { list-style: none; cursor: pointer; padding: 22px 36px 22px 0; position: relative; font-family: var(--display); font-size: 18px; }
+.am-faq summary::-webkit-details-marker { display: none; }
+.am-faq summary::after { content: "+"; position: absolute; right: 2px; top: 18px; font-family: var(--body); font-size: 22px; font-weight: 300; color: var(--charcoal); transition: transform .25s ease; }
+.am-faq details[open] summary::after { transform: rotate(45deg); }
+.am-faq details p { max-width: 58ch; padding: 0 38px 22px 0; margin: -4px 0 0; color: var(--charcoal); font-size: 13px; line-height: 1.75; font-weight: 300; }
+@media (max-width: 800px) { .am-faq { grid-template-columns: 1fr; gap: 38px; padding: 74px 6vw 82px; } .am-faq__head p { max-width: 48ch; } }
 </style>
 </head>
 <body>
@@ -537,6 +603,7 @@
       <a href="#servicos" data-i18n="nav.servicos">Serviços</a>
       <a href="#noivas" data-i18n="nav.noivas">Noivas</a>
       <a href="#depoimentos" data-i18n="nav.depoimentos">Depoimentos</a>
+      <a href="#faq">FAQ</a>
       <a href="#contato" data-i18n="nav.contato">Contato</a>
     </nav>
     <div class="am-lang" role="group" aria-label="Idioma / Language">
@@ -563,6 +630,7 @@
     <li><a href="#servicos" data-am-menu-link data-i18n="nav.servicos">Serviços</a></li>
     <li><a href="#noivas" data-am-menu-link data-i18n="nav.noivas">Noivas</a></li>
     <li><a href="#depoimentos" data-am-menu-link data-i18n="nav.depoimentos">Depoimentos</a></li>
+    <li><a href="#faq" data-am-menu-link>FAQ</a></li>
     <li><a href="#contato" data-am-menu-link data-i18n="nav.contato">Contato</a></li>
   </ul>
   <div class="am-menu-overlay__contact">
@@ -624,9 +692,9 @@
       <button class="am-carousel-btn" type="button" data-carousel-target="embroidery" data-carousel-dir="1" aria-label="Ver próximos bordados"><svg viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"/></svg></button>
     </div>
     <div class="am-embroidery__row" data-carousel="embroidery" aria-label="Galeria de bordados à mão">
-      <div class="am-embroidery__card"><div class="am-frame am-zoomable" data-fabric-pt="Fita de cetim e fios de algodão" data-customization-pt="Bordado floral personalizado · acabamento manual" data-fabric-en="Satin ribbon and cotton threads" data-customization-en="Personalized floral embroidery · hand-finished details" tabindex="0" role="button" aria-label="Ampliar Bordados 1"><img src="images/bordados-1.png" alt="Fita bordada personalizada no buquê — Bordados 1" loading="lazy" decoding="async"><span class="am-zoom-badge"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></span></div><p class="am-embroidery__label">Bordados 1</p></div>
-      <div class="am-embroidery__card"><div class="am-frame am-zoomable" data-fabric-pt="Algodão e fios metálicos" data-customization-pt="Bordado floral artesanal · acabamento manual" data-fabric-en="Cotton and metallic threads" data-customization-en="Handcrafted floral embroidery · hand-finished details" tabindex="0" role="button" aria-label="Ampliar Bordados 2"><img src="images/Bordados3.png" alt="Bordado floral artesanal em faixa de tecido — Bordados 2" loading="lazy" decoding="async"><span class="am-zoom-badge"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></span></div><p class="am-embroidery__label">Bordados 2</p></div>
-      <div class="am-embroidery__card"><div class="am-frame am-zoomable" data-fabric-pt="Fita de cetim e linha de bordado" data-customization-pt="Flores e iniciais bordadas · composição personalizada" data-fabric-en="Satin ribbon and embroidery thread" data-customization-en="Embroidered flowers and initials · personalized composition" tabindex="0" role="button" aria-label="Ampliar Bordados 3"><img src="images/bordados-2.png" alt="Fitas bordadas com flores e iniciais — Bordados 3" loading="lazy" decoding="async"><span class="am-zoom-badge"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></span></div><p class="am-embroidery__label">Bordados 3</p></div>
+      <div class="am-embroidery__card"><div class="am-frame am-zoomable" data-fabric-pt="Fita de cetim e fios de algodão" data-customization-pt="Bordado floral personalizado · acabamento manual" data-fabric-en="Satin ribbon and cotton threads" data-customization-en="Personalized floral embroidery · hand-finished details" tabindex="0" role="button" aria-label="Ampliar Bordados 1"><img src="images/bordados-1.webp" alt="Fita bordada personalizada no buquê — Bordados 1" loading="lazy" decoding="async"><span class="am-zoom-badge"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></span></div><p class="am-embroidery__label">Bordados 1</p></div>
+      <div class="am-embroidery__card"><div class="am-frame am-zoomable" data-fabric-pt="Algodão e fios metálicos" data-customization-pt="Bordado floral artesanal · acabamento manual" data-fabric-en="Cotton and metallic threads" data-customization-en="Handcrafted floral embroidery · hand-finished details" tabindex="0" role="button" aria-label="Ampliar Bordados 2"><img src="images/Bordados3.webp" alt="Bordado floral artesanal em faixa de tecido — Bordados 2" loading="lazy" decoding="async"><span class="am-zoom-badge"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></span></div><p class="am-embroidery__label">Bordados 2</p></div>
+      <div class="am-embroidery__card"><div class="am-frame am-zoomable" data-fabric-pt="Fita de cetim e linha de bordado" data-customization-pt="Flores e iniciais bordadas · composição personalizada" data-fabric-en="Satin ribbon and embroidery thread" data-customization-en="Embroidered flowers and initials · personalized composition" tabindex="0" role="button" aria-label="Ampliar Bordados 3"><img src="images/bordados-2.webp" alt="Fitas bordadas com flores e iniciais — Bordados 3" loading="lazy" decoding="async"><span class="am-zoom-badge"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></span></div><p class="am-embroidery__label">Bordados 3</p></div>
     </div>
   </div>
 </section>
@@ -746,6 +814,32 @@
   </div>
 </section>
 
+<!-- FAQ -->
+<section class="am-faq" id="faq">
+  <div class="am-faq__head">
+    <p class="am-eyebrow" data-i18n="faq.eyebrow">Antes da primeira conversa</p>
+    <h2 data-i18n-html="faq.title"><em>Dúvidas</em> frequentes</h2>
+    <p data-i18n="faq.intro">Algumas respostas para tornar o primeiro contacto mais simples e tranquilo.</p>
+  </div>
+  <div class="am-faq__list">
+    <details>
+      <summary data-i18n="faq.q1">Onde fica o Atelier Ashley Medina?</summary>
+      <p data-i18n="faq.a1">O atelier fica na Rua Rodrigues Lapa, 14, 4.º Esq., 2845-132 Seixal. As visitas são feitas por marcação.</p>
+    </details>
+    <details>
+      <summary data-i18n="faq.q2">Como posso marcar uma consulta privada?</summary>
+      <p data-i18n="faq.a2">Pode preencher o formulário de consulta no site. A mensagem é preparada e enviada diretamente para o WhatsApp do atelier.</p>
+    </details>
+    <details>
+      <summary data-i18n="faq.q3">O atelier cria vestidos de noiva feitos à medida?</summary>
+      <p data-i18n="faq.a3">Sim. Cada vestido é pensado em conjunto com a noiva, desde a silhueta e os tecidos até às provas e aos ajustes finais.</p>
+    </details>
+    <details>
+      <summary data-i18n="faq.q4">Quando devo iniciar o processo?</summary>
+      <p data-i18n="faq.a4">O melhor momento é definido na primeira conversa, tendo em conta a data do casamento, o modelo e o nível de personalização desejado.</p>
+    </details>
+  </div>
+</section>
 <!-- AGENDAR CONSULTA + FORMULÁRIO -->
 <section class="am-book" id="contato">
   <div>
@@ -758,7 +852,7 @@
     </div>
   </div>
 
-  <form class="am-form am-reveal" data-delay="1" data-am-form novalidate>
+  <form class="am-form am-reveal" data-delay="1" data-am-form aria-label="Pedido de consulta privada" aria-describedby="am-form-note" novalidate>
     <div class="am-form__row">
       <div class="am-field">
         <label for="am-name" data-i18n="form.name">Nome</label>
@@ -780,12 +874,22 @@
       </div>
     </div>
     <div class="am-field">
+      <label for="am-interest" data-i18n="form.interest">Como gostaria de começar?</label>
+      <select id="am-interest" name="interest">
+        <option value="" data-i18n="form.interest_choose">Escolha uma opção</option>
+        <option value="vestido" data-i18n="form.interest_dress">Vestido de noiva feito à medida</option>
+        <option value="bordado" data-i18n="form.interest_embroidery">Bordado ou detalhe personalizado</option>
+        <option value="explorar" data-i18n="form.interest_explore">Ainda estou a explorar</option>
+      </select>
+    </div>
+    <div class="am-field">
       <label for="am-msg" data-i18n="form.msg">Mensagem</label>
       <textarea id="am-msg" name="message" maxlength="600" placeholder=" " data-i18n-ph="form.ph_msg"></textarea>
     </div>
+    <input class="am-honeypot" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
     <div class="am-form__status" data-am-form-status role="status" aria-live="polite"></div>
     <button type="submit" class="am-btn am-btn--solid am-form__submit" data-i18n="form.submit">Enviar pelo WhatsApp</button>
-    <p class="am-form__note">
+    <p class="am-form__note" id="am-form-note">
       <svg viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
       <span data-i18n="form.note">Os seus dados não são armazenados neste site — são enviados apenas para a nossa conversa de WhatsApp.</span>
     </p>
@@ -988,6 +1092,12 @@
       'serv.i3': 'Private fittings', 'serv.d3': 'Each fitting brings the gown closer to your shape, movement and presence.',
       'serv.i4': 'The final detail', 'serv.d4': 'Final adjustments, styling and preparation for the day you imagined.',
       'serv.cta': 'Book a private consultation',
+      'faq.eyebrow': 'Before the first conversation', 'faq.title': '<em>Frequently</em> asked questions',
+      'faq.intro': 'A few answers to make your first contact simple and reassuring.',
+      'faq.q1': 'Where is Atelier Ashley Medina located?', 'faq.a1': 'The atelier is at Rua Rodrigues Lapa, 14, 4.º Esq., 2845-132 Seixal. Visits are by appointment.',
+      'faq.q2': 'How can I book a private consultation?', 'faq.a2': 'Fill in the consultation form on the website. Your message is prepared and sent directly to the atelier via WhatsApp.',
+      'faq.q3': 'Does the atelier create made-to-measure wedding gowns?', 'faq.a3': 'Yes. Each gown is developed together with the bride, from the silhouette and fabrics to the fittings and final adjustments.',
+      'faq.q4': 'When should I begin the process?', 'faq.a4': 'The best moment is defined in the first conversation, considering your wedding date, design and desired level of personalisation.',
       'found.eyebrow': 'Founder & Lead Designer', 'found.name': 'Hello, I am Ashley',
       'found.text': 'For me, creating wedding gowns goes far beyond sewing beautiful pieces — it is about crafting heirlooms that carry memories for a lifetime. In every stitch, every fabric choice and every adjustment, I think carefully to create a gown as unique as the bride who will wear it.',
       'found.cta': 'Meet the atelier',
@@ -1008,7 +1118,7 @@
       'expect.text': 'Choosing your wedding gown is an experience guided by timeless beauty, soft fabrics and the elegance of every piece. Each gown tells a story — a partnership between you and our atelier. We care for every detail so you live this moment with ease, from the first sketch to the last stitch.',
       'book.eyebrow': 'Book Your Consultation', 'book.title': 'Reserve your time at the atelier',
       'book.text': 'We would love to welcome you to the atelier for a private consultation. Fill in the form and we will send your message straight to WhatsApp to confirm the best date.',
-      'form.name': 'Name', 'form.phone': 'Phone', 'form.email': 'Email', 'form.date': 'Wedding date', 'form.msg': 'Message',
+      'form.name': 'Name', 'form.phone': 'Phone', 'form.email': 'Email', 'form.date': 'Wedding date', 'form.interest': 'How would you like to begin?', 'form.interest_choose': 'Choose an option', 'form.interest_dress': 'Made-to-measure wedding gown', 'form.interest_embroidery': 'Bespoke embroidery or detail', 'form.interest_explore': 'I am still exploring', 'form.msg': 'Message',
       'form.ph_name': 'Your full name', 'form.ph_phone': 'Optional', 'form.ph_email': 'you@email.com', 'form.ph_msg': 'Tell us about your dream gown…',
       'form.submit': 'Send via WhatsApp',
       'form.note': 'Your data is not stored on this site — it is sent only to our WhatsApp chat.',
@@ -1169,6 +1279,9 @@
       var email = (data.get('email') || '').toString().trim();
       var date = (data.get('date') || '').toString().trim();
       var message = (data.get('message') || '').toString().trim();
+      var interest = (data.get('interest') || '').toString().trim();
+      var website = (data.get('website') || '').toString().trim();
+      if(website) return;
 
       if(!name){ setStatus(t('form.err_name') || 'Por favor, indique o seu nome.', false); return; }
       if(!phone && !email){ setStatus(t('form.err_contact') || 'Adicione um telefone ou email para respondermos.', false); return; }
@@ -1181,6 +1294,7 @@
         phone ? 'Phone: ' + phone : '',
         email ? 'Email: ' + email : '',
         date ? 'Wedding date: ' + date : '',
+        interest ? 'Interest: ' + interest : '',
         message ? 'Message: ' + message : ''
       ] : [
         'Olá Ashley Medina! Gostaria de agendar uma consulta.',
@@ -1188,6 +1302,7 @@
         phone ? 'Telefone: ' + phone : '',
         email ? 'Email: ' + email : '',
         date ? 'Data do Casamento: ' + date : '',
+        interest ? 'Interesse: ' + interest : '',
         message ? 'Mensagem: ' + message : ''
       ];
       var text = lines.filter(Boolean).join('\n');
