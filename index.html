@@ -11,7 +11,13 @@
 <meta name="description" content="Ateliê Ashley Medina em Seixal. Vestidos de noiva feitos à medida — do primeiro esboço à última prova. Marque a sua consulta privada.">
 <meta name="author" content="Ashley Medina">
 <meta name="theme-color" content="#1B1815">
-<link rel="canonical" href="https://ashleymedina.pt/">
+<link rel="canonical" href="https://www.atelierashleymedina.com/">
+<meta property="og:url" content="https://www.atelierashleymedina.com/">
+<meta property="og:image" content="https://www.atelierashleymedina.com/images/hero-noiva-2026.webp">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Ashley Medina — Vestidos de Noiva Sob Medida">
+<meta name="twitter:description" content="Vestidos de noiva feitos à medida no ateliê de Seixal.">
+<meta name="twitter:image" content="https://www.atelierashleymedina.com/images/hero-noiva-2026.webp">
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Ashley Medina">
@@ -30,6 +36,7 @@
 <meta name="robots" content="index, follow">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://images.unsplash.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -496,6 +503,9 @@
   .am-hero__scroll { margin-top: 30px; }
 }
 
+.am-skip-link { position: fixed; top: 12px; left: 12px; z-index: 300; transform: translateY(-180%); padding: 12px 16px; border-radius: 999px; background: var(--ink); color: var(--cream); font-size: 12px; text-decoration: none; transition: transform .2s ease; }
+.am-skip-link:focus { transform: translateY(0); }
+.am-privacy-link { color: var(--ink); background: none; border: 0; padding: 0; font: inherit; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
 .am-root a:focus-visible, .am-root button:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
 .am-lightbox button:focus-visible { outline-color: var(--cream); }
 @media (prefers-reduced-motion: reduce) {
@@ -506,12 +516,13 @@
 </style>
 </head>
 <body>
+<a class="am-skip-link" href="#conteudo">Saltar para o conteúdo</a>
 <div class="am-root">
 
 <header class="am-topbar" data-am-topbar>
   <div class="am-topbar__mark">Ashley Medina</div>
   <div class="am-topbar__right">
-    <nav class="am-topbar__nav">
+    <nav class="am-topbar__nav" aria-label="Navegação principal">
       <a href="#abordagem" data-i18n="nav.atelie">Ateliê</a>
       <a href="#servicos" data-i18n="nav.servicos">Serviços</a>
       <a href="#noivas" data-i18n="nav.noivas">Noivas</a>
@@ -519,18 +530,18 @@
       <a href="#contato" data-i18n="nav.contato">Contato</a>
     </nav>
     <div class="am-lang" role="group" aria-label="Idioma / Language">
-      <button data-am-lang="pt" class="is-active" aria-label="Português">PT</button>
+      <button type="button" data-am-lang="pt" class="is-active" aria-label="Português">PT</button>
       <span>/</span>
-      <button data-am-lang="en" aria-label="English">EN</button>
+      <button type="button" data-am-lang="en" aria-label="English">EN</button>
     </div>
-    <button class="am-menu-toggle" data-am-menu-toggle aria-label="Abrir menu" aria-expanded="false">
+    <button type="button" class="am-menu-toggle" data-am-menu-toggle aria-label="Abrir menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
   </div>
 </header>
 <div class="am-scroll-progress" aria-hidden="true"><span data-am-scroll-progress></span></div>
 
-<div class="am-menu-overlay" data-am-menu-overlay>
+<div class="am-menu-overlay" data-am-menu-overlay role="dialog" aria-modal="true" aria-label="Menu principal">
   <div class="am-menu-overlay__top">
     <div class="am-menu-overlay__mark">Ashley Medina</div>
     <button class="am-menu-overlay__close" type="button" data-am-menu-close aria-label="Fechar menu">
@@ -550,6 +561,7 @@
   </div>
 </div>
 
+<main id="conteudo">
 <!-- HERO -->
 <section class="am-hero" id="topo">
   <div>
@@ -770,12 +782,14 @@
   </form>
 </section>
 
+</main>
+
 <!-- WORDMARK -->
 <div class="am-wordmark"><h2 class="am-reveal">Ashley Medina</h2></div>
 
 <!-- CONSENTIMENTO DE ANALYTICS -->
 <div class="am-consent" data-am-consent role="dialog" aria-live="polite" aria-label="Preferências de privacidade">
-  <p class="am-consent__text">Usamos cookies de medição apenas com a sua autorização para perceber visitas e pedidos de consulta. <a href="#contato">Pode continuar sem aceitar.</a></p>
+  <p class="am-consent__text">Usamos cookies de medição apenas com a sua autorização para perceber visitas e pedidos de consulta. <a href="privacidade.html">Consulte a política de privacidade.</a></p>
   <div class="am-consent__actions">
     <button type="button" class="am-consent__button" data-am-consent-reject>Recusar</button>
     <button type="button" class="am-consent__button am-consent__button--accept" data-am-consent-accept>Aceitar analytics</button>
@@ -813,7 +827,7 @@
   </div>
   <div class="am-footer__bottom">
     <span data-i18n="foot.rights">© 2026 Ashley Medina. Todos os direitos reservados.</span>
-    <span data-i18n="foot.hand">feito à mão, ponto a ponto</span>
+    <span><button type="button" class="am-privacy-link" data-am-consent-manage>Preferências de privacidade</button> · <span data-i18n="foot.hand">feito à mão, ponto a ponto</span></span>
   </div>
 </footer>
 
@@ -916,6 +930,13 @@
     var accept = document.querySelector('[data-am-consent-accept]'); var reject = document.querySelector('[data-am-consent-reject]');
     if(accept) accept.addEventListener('click', function(){setConsent('accepted')});
     if(reject) reject.addEventListener('click', function(){setConsent('rejected')});
+    document.querySelectorAll('[data-am-consent-manage]').forEach(function(control){
+      control.addEventListener('click', function(){
+        try { localStorage.removeItem(CONSENT_KEY); } catch(e) {}
+        consent = null;
+        if(banner) { banner.classList.add('is-visible'); var acceptButton = banner.querySelector('[data-am-consent-accept]'); if(acceptButton) acceptButton.focus(); }
+      });
+    });
     document.querySelectorAll('a[href*="wa.me"], a[href*="api.whatsapp.com"]').forEach(function(link){
       link.addEventListener('click', function(){ track('Contact', { channel: 'whatsapp', placement: link.className || 'link' }); });
     });
@@ -1008,6 +1029,7 @@
     document.documentElement.lang = (lang === 'en') ? 'en' : 'pt-PT';
     document.querySelectorAll('[data-am-lang]').forEach(function(b){
       b.classList.toggle('is-active', b.getAttribute('data-am-lang') === lang);
+      b.setAttribute('aria-pressed', b.getAttribute('data-am-lang') === lang ? 'true' : 'false');
     });
     try { localStorage.setItem('am-lang', lang); } catch(e){}
     return lang;
