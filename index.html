@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ashley Medina — Vestidos de Noiva Sob Medida | Ateliê em Seixal</title>
+<title>Ashley Medina — Vestidos de Noiva Feitos à Medida | Ateliê em Seixal</title>
 
 <!-- ============================================================
      SEO & PARTILHA SOCIAL
@@ -15,13 +15,13 @@
 <meta property="og:url" content="https://www.atelierashleymedina.com/">
 <meta property="og:image" content="https://www.atelierashleymedina.com/images/hero-noiva-2026.webp">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Ashley Medina — Vestidos de Noiva Sob Medida">
+<meta name="twitter:title" content="Ashley Medina — Vestidos de Noiva Feitos à Medida">
 <meta name="twitter:description" content="Vestidos de noiva feitos à medida no ateliê de Seixal.">
 <meta name="twitter:image" content="https://www.atelierashleymedina.com/images/hero-noiva-2026.webp">
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Ashley Medina">
-<meta property="og:title" content="Ashley Medina — Vestidos de Noiva Sob Medida">
+<meta property="og:title" content="Ashley Medina — Vestidos de Noiva Feitos à Medida">
 <meta property="og:description" content="Vestidos de noiva feitos à medida no ateliê de Seixal.">
 <meta property="og:locale" content="pt_PT">
   <script type="application/ld+json">
@@ -58,7 +58,7 @@
         "name": "Vestidos de noiva feitos à medida",
         "provider": {"@id": "https://www.atelierashleymedina.com/#atelier"},
         "areaServed": ["Seixal", "Lisboa", "Setúbal"],
-        "serviceType": "Criação e acompanhamento de vestidos de noiva sob medida"
+        "serviceType": "Criação e acompanhamento de vestidos de noiva feitos à medida"
       },
       {
         "@type": "FAQPage",
@@ -88,6 +88,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="image" href="images/hero-noiva-2026.webp" fetchpriority="high">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add('js');</script>
 <style>
 
 /* ============================================================
@@ -141,8 +142,9 @@
 .am-btn--solid:hover { background: transparent; color: var(--ink); }
 
 /* revelação no scroll */
-.am-reveal { opacity: 0; transform: translateY(28px); transition: opacity .9s ease, transform .9s cubic-bezier(.2,.7,.2,1); }
-.am-reveal.is-in { opacity: 1; transform: none; }
+.am-reveal { opacity: 1; transform: none; transition: opacity .9s ease, transform .9s cubic-bezier(.2,.7,.2,1); }
+html.js .am-reveal { opacity: 0; transform: translateY(28px); }
+html.js .am-reveal.is-in { opacity: 1; transform: none; }
 .am-reveal[data-delay="1"] { transition-delay: .12s; }
 .am-reveal[data-delay="2"] { transition-delay: .24s; }
 .am-reveal[data-delay="3"] { transition-delay: .36s; }
@@ -561,7 +563,7 @@
 .am-lightbox button:focus-visible { outline-color: var(--cream); }
 @media (prefers-reduced-motion: reduce) {
   .am-root *, .am-reveal { animation: none !important; transition: none !important; }
-  .am-reveal { opacity: 1; transform: none; }
+  html.js .am-reveal { opacity: 1; transform: none; }
 }
 
 /* DIREÇÃO DE ARTE — quiet luxury */
@@ -589,6 +591,20 @@
 .am-faq details[open] summary::after { transform: rotate(45deg); }
 .am-faq details p { max-width: 58ch; padding: 0 38px 22px 0; margin: -4px 0 0; color: var(--charcoal); font-size: 13px; line-height: 1.75; font-weight: 300; }
 @media (max-width: 800px) { .am-faq { grid-template-columns: 1fr; gap: 38px; padding: 74px 6vw 82px; } .am-faq__head p { max-width: 48ch; } }
+
+/* CONFIANÇA E CONTACTO MOBILE */
+.am-form__consent { display: flex; align-items: flex-start; gap: 10px; color: var(--charcoal); font-size: 11px; line-height: 1.55; font-weight: 300; }
+.am-form__consent input { flex: 0 0 auto; width: 16px; height: 16px; margin: 1px 0 0; accent-color: var(--ink); }
+.am-form__consent a { color: var(--ink); text-underline-offset: 3px; }
+.am-form__consent input:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+.am-mobile-cta { display: none; }
+@media (max-width: 560px) {
+  .am-float-wa { display: none; }
+  .am-mobile-cta { position: fixed; left: 12px; right: 12px; bottom: max(12px, env(safe-area-inset-bottom)); z-index: 70; display: grid; grid-template-columns: 1fr 1.35fr; gap: 8px; padding: 8px; background: rgba(247,241,232,.94); border: 1px solid var(--line); box-shadow: 0 12px 30px rgba(27,24,21,.16); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); }
+  .am-mobile-cta a { display: flex; align-items: center; justify-content: center; min-height: 42px; padding: 10px 12px; color: var(--ink); border: 1px solid var(--ink); font-size: 10px; letter-spacing: .1em; text-decoration: none; text-transform: uppercase; }
+  .am-mobile-cta a:last-child { background: var(--ink); color: var(--cream); }
+  .am-mobile-cta a:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+}
 </style>
 </head>
 <body>
@@ -661,7 +677,7 @@
 <!-- ABORDAGEM -->
 <section class="am-approach" id="abordagem">
   <div>
-    <h2 class="am-approach__title am-reveal" data-i18n-html="appr.title"><em>Nossa</em> ABORDAGEM</h2>
+    <h2 class="am-approach__title am-reveal" data-i18n-html="appr.title"><em>A Nossa</em> Abordagem</h2>
     <p class="am-approach__text am-reveal" data-delay="1" data-i18n="appr.p1">Acreditamos que encontrar o vestido de noiva deve ser uma das experiências mais memoráveis da sua vida. No Atelier Ashley Medina, oferecemos um processo caloroso e acolhedor que celebra a jornada de se tornar noiva.</p>
     <p class="am-approach__text am-reveal" data-delay="2" data-i18n-html="appr.p2">Tudo começa por ouvir. Conhecemos a noiva, as suas ideias, o seu estilo e aquilo que imagina para o seu vestido. A partir daí, acompanhamos cada etapa da criação - desde a escolha dos tecidos e dos detalhes até às provas e aos ajustes finais.<br><br>Cada decisão é feita em conjunto, com atenção ao que realmente deseja, para que o resultado seja um vestido único, pensado para si e feito à sua medida.</p>
     <div class="am-approach__cta am-reveal" data-delay="3"><a href="#servicos" class="am-btn" data-i18n="appr.cta">Conhecer o processo</a></div>
@@ -683,7 +699,7 @@
   <div>
     <p class="am-eyebrow am-reveal">DETALHES QUE HOMENAGEIAM</p>
     <h2 class="am-embroidery__title am-reveal" data-delay="1"><em>Bordados</em> à Mão</h2>
-    <p class="am-embroidery__text am-reveal" data-delay="2">Cada detalhe pode guardar uma memória: um nome, uma data, uma frase ou a presença de quem acompanha a sua história. Criamos bordados delicados para o véu, a fita do buquê e outros elementos do seu dia.</p>
+    <p class="am-embroidery__text am-reveal" data-delay="2">Cada detalhe pode guardar uma memória: um nome, uma data, uma frase ou a presença de quem acompanha a sua história. Criamos bordados delicados para o véu, a fita do ramo e outros elementos do seu dia.</p>
     <a href="#contato" class="am-btn am-reveal" data-delay="3">Falar sobre um detalhe</a>
   </div>
   <div class="am-embroidery__viewport am-reveal" data-delay="1">
@@ -692,7 +708,7 @@
       <button class="am-carousel-btn" type="button" data-carousel-target="embroidery" data-carousel-dir="1" aria-label="Ver próximos bordados"><svg viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"/></svg></button>
     </div>
     <div class="am-embroidery__row" data-carousel="embroidery" aria-label="Galeria de bordados à mão">
-      <div class="am-embroidery__card"><div class="am-frame am-zoomable" data-fabric-pt="Fita de cetim e fios de algodão" data-customization-pt="Bordado floral personalizado · acabamento manual" data-fabric-en="Satin ribbon and cotton threads" data-customization-en="Personalized floral embroidery · hand-finished details" tabindex="0" role="button" aria-label="Ampliar Bordados 1"><img src="images/bordados-1.webp" alt="Fita bordada personalizada no buquê — Bordados 1" loading="lazy" decoding="async"><span class="am-zoom-badge"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></span></div><p class="am-embroidery__label">Bordados 1</p></div>
+      <div class="am-embroidery__card"><div class="am-frame am-zoomable" data-fabric-pt="Fita de cetim e fios de algodão" data-customization-pt="Bordado floral personalizado · acabamento manual" data-fabric-en="Satin ribbon and cotton threads" data-customization-en="Personalized floral embroidery · hand-finished details" tabindex="0" role="button" aria-label="Ampliar Bordados 1"><img src="images/bordados-1.webp" alt="Fita bordada personalizada no ramo — Bordados 1" loading="lazy" decoding="async"><span class="am-zoom-badge"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></span></div><p class="am-embroidery__label">Bordados 1</p></div>
       <div class="am-embroidery__card"><div class="am-frame am-zoomable" data-fabric-pt="Algodão e fios metálicos" data-customization-pt="Bordado floral artesanal · acabamento manual" data-fabric-en="Cotton and metallic threads" data-customization-en="Handcrafted floral embroidery · hand-finished details" tabindex="0" role="button" aria-label="Ampliar Bordados 2"><img src="images/Bordados3.webp" alt="Bordado floral artesanal em faixa de tecido — Bordados 2" loading="lazy" decoding="async"><span class="am-zoom-badge"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></span></div><p class="am-embroidery__label">Bordados 2</p></div>
       <div class="am-embroidery__card"><div class="am-frame am-zoomable" data-fabric-pt="Fita de cetim e linha de bordado" data-customization-pt="Flores e iniciais bordadas · composição personalizada" data-fabric-en="Satin ribbon and embroidery thread" data-customization-en="Embroidered flowers and initials · personalized composition" tabindex="0" role="button" aria-label="Ampliar Bordados 3"><img src="images/bordados-2.webp" alt="Fitas bordadas com flores e iniciais — Bordados 3" loading="lazy" decoding="async"><span class="am-zoom-badge"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></span></div><p class="am-embroidery__label">Bordados 3</p></div>
     </div>
@@ -742,9 +758,9 @@
 <!-- NOIVAS -->
 <section class="am-brides" id="noivas">
   <div class="am-brides__head am-reveal">
-    <div class="am-brides__kicker">The collection / 2026</div>
-    <h2 data-i18n-html="brides.head"><em>Noivas</em> em Destaque</h2>
-    <p class="am-brides__intro">Uma seleção de silhuetas, texturas e gestos pensados para uma noiva única.</p>
+    <div class="am-brides__kicker">Inspiração / 2026</div>
+    <h2 data-i18n-html="brides.head"><em>Inspiração</em> para si</h2>
+    <p class="am-brides__intro">Uma seleção de silhuetas, texturas e gestos para descobrir o vestido que imagina.</p>
   </div>
   <p class="am-brides__hint am-reveal" data-delay="1">
     <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
@@ -757,24 +773,24 @@
     </div>
     <div class="am-brides__row" data-carousel="brides">
     <div class="am-bride am-reveal">
-      <div class="am-frame am-bride__photo am-zoomable" data-fabric-pt="Seda mikado" data-customization-pt="Mangas removíveis · decote personalizado · cauda ajustável" data-fabric-en="Silk mikado" data-customization-en="Detachable sleeves · custom neckline · adjustable train" tabindex="0" role="button" aria-label="Ampliar vestido de Bruna"><img src="https://images.unsplash.com/photo-1579583764988-3e08c6132d2a?crop=entropy&cs=srgb&fm=jpg&q=80&w=500&ixlib=rb-4.1.0" alt="Noiva Bruna vestindo Ateliê Ashley Medina" loading="lazy" decoding="async"><span class="am-zoom-badge"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></span></div>
-      <p class="am-bride__name">Bruna</p>
+      <div class="am-frame am-bride__photo am-zoomable" data-fabric-pt="Seda mikado" data-customization-pt="Mangas removíveis · decote personalizado · cauda ajustável" data-fabric-en="Silk mikado" data-customization-en="Detachable sleeves · custom neckline · adjustable train" tabindex="0" role="button" aria-label="Ampliar inspiração 01"><img src="https://images.unsplash.com/photo-1579583764988-3e08c6132d2a?crop=entropy&cs=srgb&fm=jpg&q=80&w=500&ixlib=rb-4.1.0" alt="Imagem de inspiração de vestido de noiva 01" loading="lazy" decoding="async"><span class="am-zoom-badge"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></span></div>
+      <p class="am-bride__name">Silhueta 01</p>
     </div>
     <div class="am-bride am-reveal" data-delay="1">
-      <div class="am-frame am-bride__photo am-zoomable" data-fabric-pt="Renda francesa e tule" data-customization-pt="Bordado manual · alças reguláveis · véu coordenado" data-fabric-en="French lace and tulle" data-customization-en="Hand embroidery · adjustable straps · coordinated veil" tabindex="0" role="button" aria-label="Ampliar vestido de Veronica"><img src="https://images.unsplash.com/photo-1543251587-2c12b825469a?crop=entropy&cs=srgb&fm=jpg&q=80&w=500&ixlib=rb-4.1.0" alt="Noiva Veronica vestindo Ateliê Ashley Medina" loading="lazy" decoding="async"><span class="am-zoom-badge"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></span></div>
-      <p class="am-bride__name">Veronica</p>
+      <div class="am-frame am-bride__photo am-zoomable" data-fabric-pt="Renda francesa e tule" data-customization-pt="Bordado manual · alças reguláveis · véu coordenado" data-fabric-en="French lace and tulle" data-customization-en="Hand embroidery · adjustable straps · coordinated veil" tabindex="0" role="button" aria-label="Ampliar inspiração 02"><img src="https://images.unsplash.com/photo-1543251587-2c12b825469a?crop=entropy&cs=srgb&fm=jpg&q=80&w=500&ixlib=rb-4.1.0" alt="Imagem de inspiração de vestido de noiva 02" loading="lazy" decoding="async"><span class="am-zoom-badge"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></span></div>
+      <p class="am-bride__name">Silhueta 02</p>
     </div>
     <div class="am-bride am-reveal" data-delay="2">
-      <div class="am-frame am-bride__photo am-zoomable" data-fabric-pt="Crepe de seda" data-customization-pt="Forro acetinado · costas modeladas · comprimento sob medida" data-fabric-en="Silk crepe" data-customization-en="Satin lining · sculpted back · custom length" tabindex="0" role="button" aria-label="Ampliar vestido de Isis"><img src="https://images.unsplash.com/photo-1484849457281-191e439a0431?crop=entropy&cs=srgb&fm=jpg&q=80&w=500&ixlib=rb-4.1.0" alt="Noiva Isis vestindo Ateliê Ashley Medina" loading="lazy" decoding="async"><span class="am-zoom-badge"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></span></div>
-      <p class="am-bride__name">Isis</p>
+      <div class="am-frame am-bride__photo am-zoomable" data-fabric-pt="Crepe de seda" data-customization-pt="Forro acetinado · costas modeladas · comprimento feito à medida" data-fabric-en="Silk crepe" data-customization-en="Satin lining · sculpted back · custom length" tabindex="0" role="button" aria-label="Ampliar inspiração 03"><img src="https://images.unsplash.com/photo-1484849457281-191e439a0431?crop=entropy&cs=srgb&fm=jpg&q=80&w=500&ixlib=rb-4.1.0" alt="Imagem de inspiração de vestido de noiva 03" loading="lazy" decoding="async"><span class="am-zoom-badge"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></span></div>
+      <p class="am-bride__name">Silhueta 03</p>
     </div>
     <div class="am-bride am-reveal" data-delay="3">
-      <div class="am-frame am-bride__photo am-zoomable" data-fabric-pt="Organza de seda" data-customization-pt="Aplicações 3D · sobressaia removível · cintura marcada" data-fabric-en="Silk organza" data-customization-en="3D appliqué · detachable overskirt · defined waist" tabindex="0" role="button" aria-label="Ampliar vestido de Ingrid"><img src="https://images.unsplash.com/photo-1779055660224-882f4c02bc50?crop=entropy&cs=srgb&fm=jpg&q=80&w=500&ixlib=rb-4.1.0" alt="Noiva Ingrid vestindo Ateliê Ashley Medina" loading="lazy" decoding="async"><span class="am-zoom-badge"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></span></div>
-      <p class="am-bride__name">Ingrid</p>
+      <div class="am-frame am-bride__photo am-zoomable" data-fabric-pt="Organza de seda" data-customization-pt="Aplicações 3D · sobressaia removível · cintura marcada" data-fabric-en="Silk organza" data-customization-en="3D appliqué · detachable overskirt · defined waist" tabindex="0" role="button" aria-label="Ampliar inspiração 04"><img src="https://images.unsplash.com/photo-1779055660224-882f4c02bc50?crop=entropy&cs=srgb&fm=jpg&q=80&w=500&ixlib=rb-4.1.0" alt="Imagem de inspiração de vestido de noiva 04" loading="lazy" decoding="async"><span class="am-zoom-badge"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></span></div>
+      <p class="am-bride__name">Silhueta 04</p>
     </div>
     <div class="am-bride am-reveal">
-      <div class="am-frame am-bride__photo am-zoomable" data-fabric-pt="Chiffon e cetim" data-customization-pt="Corpete estruturado · mangas personalizadas · decote à escolha" data-fabric-en="Chiffon and satin" data-customization-en="Structured bodice · bespoke sleeves · neckline of choice" tabindex="0" role="button" aria-label="Ampliar vestido de Vitoria"><img src="https://images.unsplash.com/photo-1624091844772-554661d10173?crop=entropy&cs=srgb&fm=jpg&q=80&w=500&ixlib=rb-4.1.0" alt="Noiva Vitoria vestindo Ateliê Ashley Medina" loading="lazy" decoding="async"><span class="am-zoom-badge"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></span></div>
-      <p class="am-bride__name">Vitoria</p>
+      <div class="am-frame am-bride__photo am-zoomable" data-fabric-pt="Chiffon e cetim" data-customization-pt="Corpete estruturado · mangas personalizadas · decote à escolha" data-fabric-en="Chiffon and satin" data-customization-en="Structured bodice · bespoke sleeves · neckline of choice" tabindex="0" role="button" aria-label="Ampliar inspiração 05"><img src="https://images.unsplash.com/photo-1624091844772-554661d10173?crop=entropy&cs=srgb&fm=jpg&q=80&w=500&ixlib=rb-4.1.0" alt="Imagem de inspiração de vestido de noiva 05" loading="lazy" decoding="async"><span class="am-zoom-badge"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></span></div>
+      <p class="am-bride__name">Silhueta 05</p>
     </div>
   </div>
   </div>
@@ -810,7 +826,7 @@
   </div>
   <div>
     <h2 class="am-expect__title am-reveal" data-i18n="expect.title">O que esperar</h2>
-    <p class="am-expect__text am-reveal" data-delay="1" data-i18n="expect.text">Escolher o seu vestido de noiva é uma experiência guiada pela beleza atemporal, por tecidos macios e pela elegância de cada peça. Cada vestido conta uma história — uma parceria entre você e o nosso ateliê. Cuidamos de cada detalhe para que você viva esse momento com leveza, do primeiro esboço ao último ponto.</p>
+    <p class="am-expect__text am-reveal" data-delay="1" data-i18n="expect.text">Escolher o seu vestido de noiva é uma experiência guiada pela beleza atemporal, por tecidos macios e pela elegância de cada peça. Cada vestido conta uma história — uma parceria entre si e o nosso atelier. Cuidamos de cada detalhe para que viva esse momento com leveza, do primeiro esboço ao último ponto.</p>
   </div>
 </section>
 
@@ -843,11 +859,12 @@
 <!-- AGENDAR CONSULTA + FORMULÁRIO -->
 <section class="am-book" id="contato">
   <div>
-    <p class="am-eyebrow am-reveal" data-i18n="book.eyebrow">Marque sua Consulta</p>
-    <h2 class="am-book__title am-reveal" data-delay="1" data-i18n="book.title">Reserve seu horário no ateliê</h2>
+    <p class="am-eyebrow am-reveal" data-i18n="book.eyebrow">Marque a sua consulta</p>
+    <h2 class="am-book__title am-reveal" data-delay="1" data-i18n="book.title">Reserve o seu horário no atelier</h2>
     <p class="am-book__text am-reveal" data-delay="2" data-i18n="book.text">Adoraríamos recebê-la no ateliê para uma consulta particular. Preencha o formulário e enviaremos a sua mensagem diretamente pelo WhatsApp para confirmarmos a melhor data.</p>
     <div class="am-book__contact am-reveal" data-delay="3">
       <div>Rua Rodrigues Lapa, 14, 4.º Esq. — 2845-132 Seixal</div>
+      <div><a href="https://www.google.com/maps/search/?api=1&amp;query=Rua+Rodrigues+Lapa+14+Seixal" target="_blank" rel="noopener noreferrer" data-i18n="book.directions">Obter direções</a></div>
       <div><a href="https://wa.me/351933459640" target="_blank" rel="noopener noreferrer">+351 933 459 640</a> · <a href="https://instagram.com/costura.medina" target="_blank" rel="noopener noreferrer">@costura.medina</a></div>
     </div>
   </div>
@@ -869,7 +886,7 @@
         <input id="am-email" name="email" type="email" maxlength="120" autocomplete="email" placeholder=" " data-i18n-ph="form.ph_email">
       </div>
       <div class="am-field">
-        <label for="am-date" data-i18n="form.date">Data do Casamento</label>
+        <label for="am-date" data-i18n="form.date">Data do casamento</label>
         <input id="am-date" name="date" type="date">
       </div>
     </div>
@@ -887,6 +904,10 @@
       <textarea id="am-msg" name="message" maxlength="600" placeholder=" " data-i18n-ph="form.ph_msg"></textarea>
     </div>
     <input class="am-honeypot" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <label class="am-form__consent">
+      <input type="checkbox" id="am-privacy-consent" name="privacy" required>
+      <span><span data-i18n="form.consent">Li e aceito a</span> <a href="privacidade.html">política de privacidade</a> <span data-i18n="form.consent_end">e autorizo o contacto sobre o meu pedido.</span></span>
+    </label>
     <div class="am-form__status" data-am-form-status role="status" aria-live="polite"></div>
     <button type="submit" class="am-btn am-btn--solid am-form__submit" data-i18n="form.submit">Enviar pelo WhatsApp</button>
     <p class="am-form__note" id="am-form-note">
@@ -915,7 +936,7 @@
   <div class="am-footer__top">
     <div>
       <div class="am-footer__brand">Ashley Medina</div>
-      <p data-i18n="foot.desc">Vestidos de noiva sob medida — do primeiro molde ao dia do seu sim. Atendimento no ateliê e por videochamada.</p>
+      <p data-i18n="foot.desc">Vestidos de noiva feitos à medida — do primeiro molde ao dia do seu sim. Atendimento no ateliê e por videochamada.</p>
     </div>
     <div>
       <h4 data-i18n="foot.nav">Navegação</h4>
@@ -945,6 +966,10 @@
   </div>
 </footer>
 
+<div class="am-mobile-cta" aria-label="Contactos rápidos">
+  <a href="https://wa.me/351933459640?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20os%20vestidos." target="_blank" rel="noopener noreferrer" data-i18n="mobile.whatsapp">WhatsApp</a>
+  <a href="#contato" data-i18n="mobile.book">Marcar consulta</a>
+</div>
 <a class="am-float-wa" href="https://wa.me/351933459640?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20os%20vestidos." target="_blank" rel="noopener noreferrer" aria-label="Falar no WhatsApp">
   <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3C9 3 3.3 8.6 3.3 15.5c0 2.5.7 4.8 1.9 6.8L3 29l7-1.8c1.9 1 4 1.6 6 1.6 7 0 12.7-5.6 12.7-12.5S23 3 16 3zm0 22.7c-1.9 0-3.7-.5-5.3-1.4l-.4-.2-4.2 1.1 1.1-4-.3-.4c-1-1.6-1.6-3.5-1.6-5.5C5.3 9.8 10.1 5 16 5s10.7 4.8 10.7 10.5S21.9 25.7 16 25.7z"/></svg>
 </a>
@@ -1103,8 +1128,8 @@
       'found.cta': 'Meet the atelier',
       'insp.text': 'We draw inspiration from classic romanticism, vintage design <em>and</em> contemporary detail <em>to</em> create your perfect gown.',
       'insp.cta': 'Meet the brides',
-      'brides.head': 'Featured <em>Brides</em>',
-      'brides.hint': 'Click a photo and hover to inspect the details with the magnifier',
+      'brides.head': '<em>Inspiration</em> for you',
+      'brides.hint': 'Explore a silhouette and inspect its details with the magnifier',
       'gallery.fabric': 'Fabric', 'gallery.customization': 'Bespoke details',
       'gallery.cta': 'Talk about this design <span>↗</span>',
       'testi.head': 'What our <em>brides</em> say',
@@ -1116,14 +1141,14 @@
       'testi.a3': 'Isis · Almada',
       'expect.title': 'What to expect',
       'expect.text': 'Choosing your wedding gown is an experience guided by timeless beauty, soft fabrics and the elegance of every piece. Each gown tells a story — a partnership between you and our atelier. We care for every detail so you live this moment with ease, from the first sketch to the last stitch.',
-      'book.eyebrow': 'Book Your Consultation', 'book.title': 'Reserve your time at the atelier',
+      'book.eyebrow': 'Book Your Consultation', 'book.title': 'Reserve your time at the atelier', 'book.directions': 'Get directions', 'mobile.whatsapp': 'WhatsApp', 'mobile.book': 'Book consultation',
       'book.text': 'We would love to welcome you to the atelier for a private consultation. Fill in the form and we will send your message straight to WhatsApp to confirm the best date.',
       'form.name': 'Name', 'form.phone': 'Phone', 'form.email': 'Email', 'form.date': 'Wedding date', 'form.interest': 'How would you like to begin?', 'form.interest_choose': 'Choose an option', 'form.interest_dress': 'Made-to-measure wedding gown', 'form.interest_embroidery': 'Bespoke embroidery or detail', 'form.interest_explore': 'I am still exploring', 'form.msg': 'Message',
       'form.ph_name': 'Your full name', 'form.ph_phone': 'Optional', 'form.ph_email': 'you@email.com', 'form.ph_msg': 'Tell us about your dream gown…',
       'form.submit': 'Send via WhatsApp',
-      'form.note': 'Your data is not stored on this site — it is sent only to our WhatsApp chat.',
+      'form.note': 'Your data is not stored on this site — it is sent only to our WhatsApp chat.', 'form.consent': 'I have read and accept the', 'form.consent_end': 'and authorise contact about my request.',
       'form.success': 'Opening WhatsApp with your message…',
-      'form.err_name': 'Please enter your name.', 'form.err_contact': 'Please add a phone or email so we can reply.',
+      'form.err_name': 'Please enter your name.', 'form.err_contact': 'Please add a phone or email so we can reply.', 'form.err_privacy': 'Please accept the privacy policy to continue.',
       'foot.desc': 'Made-to-measure wedding gowns — from the first pattern to your big day. In-atelier and video-call service.',
       'foot.nav': 'Navigation', 'foot.serv': 'Visit Us', 'foot.hours': 'Tuesday to Saturday, 9am–6pm',
       'foot.visits': 'Visits by appointment only', 'foot.rights': '© 2026 Ashley Medina. All rights reserved.',
@@ -1285,6 +1310,7 @@
 
       if(!name){ setStatus(t('form.err_name') || 'Por favor, indique o seu nome.', false); return; }
       if(!phone && !email){ setStatus(t('form.err_contact') || 'Adicione um telefone ou email para respondermos.', false); return; }
+      if(!data.get('privacy')){ setStatus(t('form.err_privacy') || 'Aceite a política de privacidade para continuar.', false); return; }
       if(email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ setStatus(t('form.err_contact') || 'Verifique o email introduzido.', false); return; }
 
       var isEn = currentLang === 'en';
@@ -1301,7 +1327,7 @@
         'Nome: ' + name,
         phone ? 'Telefone: ' + phone : '',
         email ? 'Email: ' + email : '',
-        date ? 'Data do Casamento: ' + date : '',
+        date ? 'Data do casamento: ' + date : '',
         interest ? 'Interesse: ' + interest : '',
         message ? 'Mensagem: ' + message : ''
       ];
