@@ -77,7 +77,7 @@
   display: inline-flex; align-items: center; gap: 8px;
   font-family: var(--body); font-size: 11.5px; letter-spacing: 0.1em;
   text-transform: uppercase; font-weight: 500;
-  padding: 15px 32px; border-radius: 100px;
+  padding: 15px 28px; border-radius: 2px;
   border: 1px solid var(--ink); background: transparent; color: var(--ink);
   text-decoration: none; cursor: pointer;
   position: relative; overflow: hidden;
@@ -245,8 +245,10 @@
 .am-services__body { display: grid; grid-template-columns: 0.9fr 1fr; gap: 70px; align-items: center; }
 .am-services__photo { aspect-ratio: 3/3.9; }
 .am-services__list { list-style: none; margin: 0 0 34px; padding: 0; counter-reset: am-service; }
-.am-services__list li { counter-increment: am-service; padding: 20px 0; border-bottom: 1px solid var(--line); font-size: 15.5px; transition: padding-left .35s ease, color .35s ease; }
-.am-services__list li::before { content: counter(am-service, decimal-leading-zero) ". "; color: var(--charcoal); }
+.am-services__list li { counter-increment: am-service; display: grid; grid-template-columns: 38px 1fr; column-gap: 10px; padding: 20px 0; border-bottom: 1px solid var(--line); font-size: 15.5px; transition: padding-left .35s ease, color .35s ease; }
+.am-services__list li::before { content: counter(am-service, decimal-leading-zero) ". "; grid-row: span 2; color: var(--charcoal); font-size: 11px; letter-spacing: .12em; padding-top: 3px; }
+.am-services__list li strong { font-family: var(--display); font-size: 20px; font-weight: 400; }
+.am-services__list li small { display: block; max-width: 42ch; margin-top: 6px; color: var(--charcoal); font-size: 12.5px; line-height: 1.65; font-weight: 300; }
 .am-services__list li:hover { padding-left: 12px; color: var(--charcoal); }
 .am-services__list li::after { content: "↗"; float: right; opacity: 0; transform: translate(-8px, 4px); transition: opacity .3s ease, transform .3s ease; }
 .am-services__list li:hover::after { opacity: 1; transform: translate(0, 4px); }
@@ -263,7 +265,7 @@
 
 /* INSPIRAÇÃO */
 .am-inspire { position: relative; text-align: center; padding: 150px 6vw 130px; background: radial-gradient(circle at 50% 46%, rgba(239,223,206,.72), transparent 46%), var(--cream); }
-.am-inspire::before { content: "THE ASHLEY MEDINA SIGNATURE"; display: block; margin-bottom: 24px; font-size: 10px; letter-spacing: .28em; color: var(--charcoal); }
+.am-inspire::before { content: "A ASSINATURA ASHLEY MEDINA"; display: block; margin-bottom: 24px; font-size: 10px; letter-spacing: .28em; color: var(--charcoal); }
 .am-inspire p { font-family: var(--display); font-size: clamp(22px, 3.2vw, 36px); line-height: 1.4; max-width: 22ch; margin: 0 auto 40px; }
 .am-inspire em { font-style: italic; }
 
@@ -513,6 +515,14 @@
   .am-reveal { opacity: 1; transform: none; }
 }
 
+/* DIREÇÃO DE ARTE — quiet luxury */
+.am-testi { background: var(--ink); color: var(--cream); }
+.am-testi__head::before, .am-testi__head h2 { color: var(--cream); }
+.am-testi__card { background: transparent; border-color: rgba(247,241,232,.28); border-radius: 2px; box-shadow: none; }
+.am-testi__card::before, .am-testi__card::after { display: none; }
+.am-testi__card:hover, .am-testi__card:focus-within { border-color: rgba(247,241,232,.72); box-shadow: none; transform: translateY(-2px); }
+.am-testi__card:hover > *, .am-testi__card:focus-within > * { text-shadow: none; filter: none; }
+.am-testi__card .am-testi__stars svg { filter: none; }
 </style>
 </head>
 <body>
@@ -569,8 +579,8 @@
     <h1 class="am-hero__title am-reveal" data-delay="1" data-i18n-html="hero.title">Design nupcial <em>atemporal</em></h1>
     <p class="am-hero__text am-reveal" data-delay="2" data-i18n-html="hero.text">No Atelier Ashley Medina criamos vestidos de noiva feitos à medida, pensados para a sua personalidade, o seu corpo e a forma como sempre imaginou viver este momento.<br><br>Por isso, cada vestido nasce da escuta, do cuidado e da sensibilidade, compreendendo o seu estilo e tudo aquilo que deseja transmitir no dia mais especial da sua vida.</p>
     <div class="am-hero__actions am-reveal" data-delay="3">
-      <a href="#servicos" class="am-btn am-btn--solid" data-i18n="hero.cta1">Ver Coleção</a>
-      <a href="#contato" class="am-btn" data-i18n="hero.cta2">Agendar Consulta</a>
+      <a href="#contato" class="am-btn am-btn--solid" data-i18n="hero.cta1">Agendar consulta privada</a>
+      <a href="#abordagem" class="am-btn" data-i18n="hero.cta2">Conhecer o processo</a>
     </div>
     <div class="am-hero__scroll" aria-hidden="true"><span>Scroll to discover</span><i></i></div>
   </div>
@@ -586,7 +596,7 @@
     <h2 class="am-approach__title am-reveal" data-i18n-html="appr.title"><em>Nossa</em> ABORDAGEM</h2>
     <p class="am-approach__text am-reveal" data-delay="1" data-i18n="appr.p1">Acreditamos que encontrar o vestido de noiva deve ser uma das experiências mais memoráveis da sua vida. No Atelier Ashley Medina, oferecemos um processo caloroso e acolhedor que celebra a jornada de se tornar noiva.</p>
     <p class="am-approach__text am-reveal" data-delay="2" data-i18n-html="appr.p2">Tudo começa por ouvir. Conhecemos a noiva, as suas ideias, o seu estilo e aquilo que imagina para o seu vestido. A partir daí, acompanhamos cada etapa da criação - desde a escolha dos tecidos e dos detalhes até às provas e aos ajustes finais.<br><br>Cada decisão é feita em conjunto, com atenção ao que realmente deseja, para que o resultado seja um vestido único, pensado para si e feito à sua medida.</p>
-    <div class="am-approach__cta am-reveal" data-delay="3"><a href="#servicos" class="am-btn" data-i18n="appr.cta">Ver Serviços</a></div>
+    <div class="am-approach__cta am-reveal" data-delay="3"><a href="#servicos" class="am-btn" data-i18n="appr.cta">Conhecer o processo</a></div>
   </div>
   <div class="am-approach__collage am-reveal" data-delay="1">
     <div class="am-frame am-approach__img--main am-zoomable" tabindex="0" role="button" aria-label="Ampliar imagem">
@@ -605,8 +615,8 @@
   <div>
     <p class="am-eyebrow am-reveal">DETALHES QUE HOMENAGEIAM</p>
     <h2 class="am-embroidery__title am-reveal" data-delay="1"><em>Bordados</em> à Mão</h2>
-    <p class="am-embroidery__text am-reveal" data-delay="2">Uma secção dedicada a homenagens personalizadas: bordados no véu, fita para o buquê, almofada das alianças, nome do noivo, data do casamento, nomes dos pais e avós — ou qualquer elemento especial que queira levar consigo para o grande dia. <strong>Texto final a confirmar com a Ashley.</strong></p>
-    <a href="#contato" class="am-btn am-reveal" data-delay="3">Conversar sobre o seu bordado</a>
+    <p class="am-embroidery__text am-reveal" data-delay="2">Cada detalhe pode guardar uma memória: um nome, uma data, uma frase ou a presença de quem acompanha a sua história. Criamos bordados delicados para o véu, a fita do buquê e outros elementos do seu dia.</p>
+    <a href="#contato" class="am-btn am-reveal" data-delay="3">Falar sobre um detalhe</a>
   </div>
   <div class="am-embroidery__viewport am-reveal" data-delay="1">
     <div class="am-carousel-controls" aria-label="Navegação dos bordados à mão">
@@ -623,7 +633,7 @@
 
 <!-- SERVIÇOS -->
 <section class="am-services" id="servicos">
-  <div class="am-services__head am-reveal"><h2 data-i18n="serv.head">SERVIÇOS PARA NOIVAS</h2></div>
+  <div class="am-services__head am-reveal"><h2 data-i18n="serv.head">O PROCESSO DO ATELIER</h2></div>
   <div class="am-services__body">
     <div class="am-frame am-services__photo am-zoomable am-reveal" tabindex="0" role="button" aria-label="Ampliar imagem">
       <img src="images/servicos-vestido-2026.webp" alt="Vestido branco exposto no atelier diante de uma lareira" loading="lazy" decoding="async">
@@ -631,12 +641,12 @@
     </div>
     <div class="am-reveal" data-delay="1">
       <ul class="am-services__list">
-        <li data-i18n="serv.i1">Vestidos de Noiva Sob Medida</li>
-        <li data-i18n="serv.i2">Coleção Feita Sob Encomenda</li>
-        <li data-i18n="serv.i3">Consultoria de Estilo Nupcial</li>
-        <li data-i18n="serv.i4">Ajustes e Retoques Finais</li>
+        <li><strong data-i18n="serv.i1">Primeira conversa</strong><small data-i18n="serv.d1">Conhecemos a sua história, o lugar, a data e a sensação que deseja viver.</small></li>
+        <li><strong data-i18n="serv.i2">Desenho e matéria</strong><small data-i18n="serv.d2">Escolhemos a silhueta, os tecidos, as rendas e os detalhes que tornam o vestido seu.</small></li>
+        <li><strong data-i18n="serv.i3">Provas privadas</strong><small data-i18n="serv.d3">Cada prova aproxima o vestido da sua forma, do seu movimento e da sua presença.</small></li>
+        <li><strong data-i18n="serv.i4">O último detalhe</strong><small data-i18n="serv.d4">Ajustes finais, styling e preparação para o dia que imaginou.</small></li>
       </ul>
-      <a href="#contato" class="am-btn am-btn--solid" data-i18n="serv.cta">Saiba Mais</a>
+      <a href="#contato" class="am-btn am-btn--solid" data-i18n="serv.cta">Agendar consulta privada</a>
     </div>
   </div>
 </section>
@@ -649,16 +659,16 @@
   </div>
   <div>
     <p class="am-eyebrow am-founder__eyebrow am-reveal" data-i18n="found.eyebrow">Fundadora e Estilista Principal</p>
-    <h2 class="am-founder__name am-reveal" data-delay="1" data-i18n="found.name">Olá, eu sou a Beatriz</h2>
+    <h2 class="am-founder__name am-reveal" data-delay="1" data-i18n="found.name">Olá, eu sou a Ashley</h2>
     <p class="am-founder__text am-reveal" data-delay="2" data-i18n="found.text">Para mim, criar vestidos de noiva vai muito além de costurar peças bonitas — trata-se de criar heranças que carregam memórias para a vida toda. A cada ponto, cada escolha de tecido e cada ajuste, penso cuidadosamente para criar um vestido que seja tão único quanto a noiva que vai vesti-lo.</p>
-    <a href="#contato" class="am-btn am-reveal" data-delay="3" data-i18n="found.cta">Saiba Mais</a>
+    <a href="#contato" class="am-btn am-reveal" data-delay="3" data-i18n="found.cta">Conhecer o atelier</a>
   </div>
 </section>
 
 <!-- INSPIRAÇÃO -->
 <section class="am-inspire">
   <p class="am-reveal" data-i18n-html="insp.text">Nos inspiramos no romantismo clássico, no design vintage <em>e</em> no design contemporâneo <em>para</em> criar o seu vestido perfeito.</p>
-  <a href="#noivas" class="am-btn am-reveal" data-delay="1" data-i18n="insp.cta">Explorar</a>
+  <a href="#noivas" class="am-btn am-reveal" data-delay="1" data-i18n="insp.cta">Ver as noivas</a>
 </section>
 
 <!-- NOIVAS -->
@@ -967,20 +977,22 @@
       'hero.eyebrow': 'ATELIER in Seixal · Made-to-Measure Bridal',
       'hero.title': 'Timeless <em>bridal</em> design',
       'hero.text': 'At Atelier Ashley Medina we create made-to-measure wedding gowns, designed around your personality, your body and the way you have always imagined this moment.<br><br>Every gown is born from listening, care and sensitivity — understanding your style and everything you wish to express on the most special day of your life.',
-      'hero.cta1': 'View Collection', 'hero.cta2': 'Book a Consultation',
+      'hero.cta1': 'Book a private consultation', 'hero.cta2': 'Discover the process',
       'appr.title': '<em>Our</em> APPROACH',
       'appr.p1': 'We believe finding your wedding dress should be one of the most memorable experiences of your life. At Atelier Ashley Medina we offer a warm and welcoming process that celebrates the journey of becoming a bride.',
       'appr.p2': 'Everything begins with listening. We get to know the bride, her ideas, her style and what she imagines for her dress. From there, we accompany every stage of the creation — from choosing the fabrics and details to fittings and final adjustments.<br><br>Every decision is made together, with attention to what she truly wants, so the result is a unique dress, designed for her and made to measure.',
-      'appr.cta': 'View Services',
-      'serv.head': 'BRIDAL SERVICES',
-      'serv.i1': 'Made-to-Measure Wedding Gowns', 'serv.i2': 'Bespoke Collection',
-      'serv.i3': 'Bridal Styling Consultancy', 'serv.i4': 'Fittings & Final Touches',
-      'serv.cta': 'Learn More',
-      'found.eyebrow': 'Founder & Lead Designer', 'found.name': 'Hello, I am Beatriz',
+      'appr.cta': 'Discover the process',
+      'serv.head': 'THE ATELIER PROCESS',
+      'serv.i1': 'First conversation', 'serv.d1': 'We learn your story, your place, your date and the feeling you want to carry.',
+      'serv.i2': 'Design and material', 'serv.d2': 'We choose the silhouette, fabrics, lace and details that make the gown yours.',
+      'serv.i3': 'Private fittings', 'serv.d3': 'Each fitting brings the gown closer to your shape, movement and presence.',
+      'serv.i4': 'The final detail', 'serv.d4': 'Final adjustments, styling and preparation for the day you imagined.',
+      'serv.cta': 'Book a private consultation',
+      'found.eyebrow': 'Founder & Lead Designer', 'found.name': 'Hello, I am Ashley',
       'found.text': 'For me, creating wedding gowns goes far beyond sewing beautiful pieces — it is about crafting heirlooms that carry memories for a lifetime. In every stitch, every fabric choice and every adjustment, I think carefully to create a gown as unique as the bride who will wear it.',
-      'found.cta': 'Learn More',
+      'found.cta': 'Meet the atelier',
       'insp.text': 'We draw inspiration from classic romanticism, vintage design <em>and</em> contemporary detail <em>to</em> create your perfect gown.',
-      'insp.cta': 'Explore',
+      'insp.cta': 'Meet the brides',
       'brides.head': 'Featured <em>Brides</em>',
       'brides.hint': 'Click a photo and hover to inspect the details with the magnifier',
       'gallery.fabric': 'Fabric', 'gallery.customization': 'Bespoke details',
