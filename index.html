@@ -597,10 +597,11 @@ html.js .am-reveal.is-in { opacity: 1; transform: none; }
 .am-form__consent input { flex: 0 0 auto; width: 16px; height: 16px; margin: 1px 0 0; accent-color: var(--ink); }
 .am-form__consent a { color: var(--ink); text-underline-offset: 3px; }
 .am-form__consent input:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
-.am-mobile-cta { display: none; }
+.am-mobile-cta { display: none; opacity: 0; transform: translateY(12px); visibility: hidden; pointer-events: none; transition: opacity .28s ease, transform .28s ease, visibility .28s ease; }
 @media (max-width: 560px) {
   .am-float-wa { display: none; }
   .am-mobile-cta { position: fixed; left: 12px; right: 12px; bottom: max(12px, env(safe-area-inset-bottom)); z-index: 70; display: grid; grid-template-columns: 1fr 1.35fr; gap: 8px; padding: 8px; background: rgba(247,241,232,.94); border: 1px solid var(--line); box-shadow: 0 12px 30px rgba(27,24,21,.16); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); }
+  .am-mobile-cta.is-visible { opacity: 1; transform: translateY(0); visibility: visible; pointer-events: auto; }
   .am-mobile-cta a { display: flex; align-items: center; justify-content: center; min-height: 42px; padding: 10px 12px; color: var(--ink); border: 1px solid var(--ink); font-size: 10px; letter-spacing: .1em; text-decoration: none; text-transform: uppercase; }
   .am-mobile-cta a:last-child { background: var(--ink); color: var(--cream); }
   .am-mobile-cta a:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
@@ -1187,6 +1188,37 @@ html.js .am-reveal.is-in { opacity: 1; transform: none; }
   document.querySelectorAll('[data-am-lang]').forEach(function(b){
     b.addEventListener('click', function(){ currentLang = applyLang(b.getAttribute('data-am-lang')); });
   });
+
+  /* --- CTA móvel: só aparece depois do hero e não cobre o formulário --- */
+  var mobileCta = document.querySelector('.am-mobile-cta');
+  var heroSection = document.querySelector('.am-hero');
+  var contactSection = document.querySelector('#contato');
+  if(mobileCta && heroSection && contactSection){
+    var heroVisible = true;
+    var contactVisible = false;
+    var updateMobileCta = function(){
+      mobileCta.classList.toggle('is-visible', !heroVisible && !contactVisible);
+    };
+    if('IntersectionObserver' in window){
+      var ctaObserver = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if(entry.target === heroSection) heroVisible = entry.isIntersecting;
+          if(entry.target === contactSection) contactVisible = entry.isIntersecting;
+        });
+        updateMobileCta();
+      }, { threshold: 0.12 });
+      ctaObserver.observe(heroSection);
+      ctaObserver.observe(contactSection);
+    } else {
+      var updateMobileCtaOnScroll = function(){
+        heroVisible = heroSection.getBoundingClientRect().bottom > window.innerHeight * 0.12;
+        contactVisible = contactSection.getBoundingClientRect().top < window.innerHeight * 0.88;
+        updateMobileCta();
+      };
+      window.addEventListener('scroll', updateMobileCtaOnScroll, { passive: true });
+      updateMobileCtaOnScroll();
+    }
+  }
 
   function t(key){ return (currentLang === 'en' && i18n.en[key]) || null; }
 
