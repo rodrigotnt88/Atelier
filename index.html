@@ -24,7 +24,7 @@
      Nota: cabeçalhos completos (HSTS, X-Frame-Options, etc.) estão
      definidos em _headers (Netlify/Vercel) e .htaccess (Apache).
      ============================================================ -->
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; img-src 'self' https://images.unsplash.com data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self' 'unsafe-inline'; connect-src 'self' https://wa.me https://api.whatsapp.com; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; img-src 'self' https://images.unsplash.com https://www.facebook.com https://www.facebook.net https://analytics.tiktok.com data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self' 'unsafe-inline' https://connect.facebook.net https://www.googletagmanager.com https://www.google-analytics.com https://analytics.tiktok.com; connect-src 'self' https://wa.me https://api.whatsapp.com https://www.facebook.com https://*.google-analytics.com https://*.analytics.google.com https://analytics.tiktok.com https://business-api.tiktok.com; upgrade-insecure-requests">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta http-equiv="X-Content-Type-Options" content="nosniff">
 <meta name="robots" content="index, follow">
@@ -387,6 +387,24 @@
 .am-wordmark h2 { font-family: var(--display); font-size: clamp(46px, 10vw, 130px); margin: 0; }
 
 /* RODAPÉ */
+/* ============================================================
+   CONSENTIMENTO E ANALYTICS
+   ============================================================ */
+.am-consent {
+  position: fixed; left: 18px; right: 18px; bottom: 18px; z-index: 200;
+  display: none; align-items: center; justify-content: space-between; gap: 24px;
+  max-width: 960px; margin: 0 auto; padding: 18px 20px;
+  background: var(--ink); color: var(--cream); border-radius: 12px;
+  box-shadow: 0 18px 50px rgba(27,24,21,.28);
+}
+.am-consent.is-visible { display: flex; }
+.am-consent__text { margin: 0; font-size: 12px; line-height: 1.55; font-weight: 300; max-width: 66ch; }
+.am-consent__text a { color: var(--cream); text-underline-offset: 3px; }
+.am-consent__actions { display: flex; gap: 8px; flex: 0 0 auto; }
+.am-consent__button { border: 1px solid rgba(247,241,232,.7); border-radius: 999px; padding: 10px 15px; background: transparent; color: var(--cream); font: 10px var(--body); letter-spacing: .1em; text-transform: uppercase; cursor: pointer; }
+.am-consent__button--accept { background: var(--cream); color: var(--ink); border-color: var(--cream); }
+@media (max-width: 640px) { .am-consent { left: 12px; right: 12px; bottom: 12px; display: block; } .am-consent__actions { margin-top: 14px; } }
+
 .am-footer { background: var(--blush); padding: 60px 6vw 30px; }
 .am-footer__top { display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 40px; padding-bottom: 40px; margin-bottom: 26px; border-bottom: 1px solid var(--line); }
 .am-footer__brand { font-family: var(--display); font-size: 18px; margin-bottom: 14px; }
@@ -755,6 +773,15 @@
 <!-- WORDMARK -->
 <div class="am-wordmark"><h2 class="am-reveal">Ashley Medina</h2></div>
 
+<!-- CONSENTIMENTO DE ANALYTICS -->
+<div class="am-consent" data-am-consent role="dialog" aria-live="polite" aria-label="Preferências de privacidade">
+  <p class="am-consent__text">Usamos cookies de medição apenas com a sua autorização para perceber visitas e pedidos de consulta. <a href="#contato">Pode continuar sem aceitar.</a></p>
+  <div class="am-consent__actions">
+    <button type="button" class="am-consent__button" data-am-consent-reject>Recusar</button>
+    <button type="button" class="am-consent__button am-consent__button--accept" data-am-consent-accept>Aceitar analytics</button>
+  </div>
+</div>
+
 <!-- RODAPÉ -->
 <footer class="am-footer">
   <div class="am-footer__top">
@@ -822,6 +849,79 @@
     <a class="am-lightbox__detail-cta" href="#contato" data-am-lb-consultation data-i18n-html="gallery.cta">Conversar sobre este modelo <span>↗</span></a>
   </aside>
 </div>
+
+<!-- IDs públicos dos fornecedores: preencher no alojamento antes do lançamento -->
+<script id="atelier-analytics-config" data-meta-pixel-id="" data-ga-measurement-id="" data-tiktok-pixel-id=""></script>
+
+<script>
+/*
+ * Analytics multi-pixel — IDs públicos são configurados nos atributos abaixo.
+ * Preencher os três IDs no deploy; nunca colocar tokens ou chaves privadas.
+ */
+(function(){
+  var configEl = document.getElementById('atelier-analytics-config');
+  var config = configEl ? {
+    metaPixelId: (configEl.dataset.metaPixelId || '').trim(),
+    gaMeasurementId: (configEl.dataset.gaMeasurementId || '').trim(),
+    tiktokPixelId: (configEl.dataset.tiktokPixelId || '').trim()
+  } : {};
+  var CONSENT_KEY = 'atelier_analytics_consent_v1';
+  var consent = null;
+  try { consent = localStorage.getItem(CONSENT_KEY); } catch(e) {}
+  var loaded = false;
+
+  function loadScript(src, id){
+    if(document.getElementById(id)) return;
+    var s = document.createElement('script'); s.async = true; s.src = src; s.id = id;
+    document.head.appendChild(s);
+  }
+  function trackMeta(name, params){ if(window.fbq) window.fbq('track', name, params || {}); }
+  function trackGa(name, params){ if(window.gtag) window.gtag('event', name, params || {}); }
+  function trackTikTok(name, params){ if(window.ttq) window.ttq.track(name, params || {}); }
+  function track(name, params){
+    if(!loaded) return;
+    trackMeta(name, params); trackGa(name === 'Lead' ? 'generate_lead' : name.toLowerCase(), params); trackTikTok(name === 'Lead' ? 'SubmitForm' : name, params);
+  }
+
+  function init(){
+    if(loaded) return;
+    if(!config.metaPixelId && !config.gaMeasurementId && !config.tiktokPixelId) return;
+    loaded = true;
+    if(config.metaPixelId){
+      !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+      window.fbq('init', config.metaPixelId); window.fbq('track', 'PageView');
+    }
+    if(config.gaMeasurementId){
+      window.dataLayer = window.dataLayer || []; window.gtag = window.gtag || function(){window.dataLayer.push(arguments)};
+      window.gtag('js', new Date()); window.gtag('config', config.gaMeasurementId, { anonymize_ip: true });
+      loadScript('https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(config.gaMeasurementId), 'am-ga-script');
+      trackGa('page_view');
+    }
+    if(config.tiktokPixelId){
+      !function(w,d,t){w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=['page','track','identify','instances','debug','on','off','once','ready','alias','group','enableCookie','disableCookie'];ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e};ttq.load=function(e,n){var r='https://analytics.tiktok.com/i18n/pixel/events.js';ttq._i=ttq._i||{};ttq._i[e]=[];ttq._i[e]._u=r;ttq._t=ttq._t||{};ttq._t[e]=+new Date;ttq._o=ttq._o||{};ttq._o[e]=n||{};var o=d.createElement('script');o.type='text/javascript';o.async=!0;o.src=r+'?sdkid='+e+'&lib='+t;var a=d.getElementsByTagName('script')[0];a.parentNode.insertBefore(o,a)};ttq.load(config.tiktokPixelId);ttq.page()}(window,document,'ttq');
+    }
+  }
+  function setConsent(value){
+    try { localStorage.setItem(CONSENT_KEY, value); } catch(e) {}
+    consent = value;
+    var banner = document.querySelector('[data-am-consent]'); if(banner) banner.classList.remove('is-visible');
+    if(value === 'accepted') init();
+  }
+  window.amTrack = track;
+  window.amAnalytics = { accept: function(){setConsent('accepted')}, reject: function(){setConsent('rejected')}, reset: function(){try{localStorage.removeItem(CONSENT_KEY)}catch(e){}; location.reload()} };
+  document.addEventListener('DOMContentLoaded', function(){
+    var banner = document.querySelector('[data-am-consent]');
+    if(!consent && banner) banner.classList.add('is-visible');
+    if(consent === 'accepted') init();
+    var accept = document.querySelector('[data-am-consent-accept]'); var reject = document.querySelector('[data-am-consent-reject]');
+    if(accept) accept.addEventListener('click', function(){setConsent('accepted')});
+    if(reject) reject.addEventListener('click', function(){setConsent('rejected')});
+    document.querySelectorAll('a[href*="wa.me"], a[href*="api.whatsapp.com"]').forEach(function(link){
+      link.addEventListener('click', function(){ track('Contact', { channel: 'whatsapp', placement: link.className || 'link' }); });
+    });
+  });
+})();
+</script>
 
 <script>
 (function(){
@@ -1059,6 +1159,7 @@
       var text = lines.filter(Boolean).join('\n');
       var url = 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(text);
       setStatus(t('form.success') || 'A abrir o WhatsApp com a sua mensagem…', true);
+      if(window.amTrack) window.amTrack('Lead', { channel: 'whatsapp', form: 'consultation' });
       window.open(url, '_blank', 'noopener,noreferrer');
     });
   }
